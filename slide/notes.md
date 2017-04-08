@@ -1,15 +1,34 @@
 
 
+# nov 2016
+----------
+évolution des scenes:
+
+    1- groupe de 1+4    
+    2- les sliders epuvent laisser des traces (légèrement translucides
+    3- les cellules peuvent se migrer et laisser des traces
+    4- des bandes taille écran verticales et horiz glissent entre et sont modifiées
+
+# aout 2016
+-----------
+
+recherche pour changement de couleurs:
+
+   event system:
+        - observer pattern
+ 
+
+-------------------------------------------------------------------------------
 
 - time is sliced into dt steps
 - actions are rules applied every dt
 - groups are lists of basic elements attached to actions
 	(group of drawn elts : 
 - basic elements :
-	- groups NO_XYZ
+	- groups NO-XYZ
  	- shapes XYZ
 	- cells w. shapes XYZ
-	- cells  w.o shape, i.e. a field NO_XYZ
+	- cells  w.o shape, i.e. a field NO-XYZ
 - localised elements
 
          
@@ -26,8 +45,8 @@
 - scene manager (all dicts)+  parser (reads txt)
 - PLY pour le polyhedre 
 - 
-*** 25 nov 2014 / Event /  Model examples and discussion
-----------------------------------------------------------
+# 25 nov 2014 / Event /  Model examples and discussion  
+------------------------------------------------------
     ref : 
     - Events in Python
         http://www.valuedlessons.com/2008/04/events-in-python.html
@@ -1064,6 +1083,7 @@ Logiques possibles en animation.
         --> voir grease: world est une variable globale
         
     - solution mixte : semi-autonomie + events scénarisés
+
 
 
 
