@@ -1,7 +1,7 @@
 
 
-# nov 2016
-----------
+= nov 2016
+
 évolution des scenes:
 
     1- groupe de 1+4    
@@ -9,8 +9,8 @@
     3- les cellules peuvent se migrer et laisser des traces
     4- des bandes taille écran verticales et horiz glissent entre et sont modifiées
 
-# aout 2016
------------
+= aout 2016
+
 
 recherche pour changement de couleurs:
 
@@ -44,10 +44,12 @@ recherche pour changement de couleurs:
 - read svg
 - scene manager (all dicts)+  parser (reads txt)
 - PLY pour le polyhedre 
-- 
-# 25 nov 2014 / Event /  Model examples and discussion  
+
+
+== 25 nov 2014 / Event /  Model examples and discussion  
 ------------------------------------------------------
-    ref : 
+   
+   ref : 
     - Events in Python
         http://www.valuedlessons.com/2008/04/events-in-python.html
     - Agents and Event Listeners for Python :
@@ -56,7 +58,7 @@ recherche pour changement de couleurs:
          http://www.expobrain.net/2010/07/31/simple-event-dispatcher-in-python/
          
          
-*** Actors Model examples and discussion
+=== Actors Model examples and discussion
 -----------------------------------------
 
         T O D O
@@ -155,22 +157,24 @@ Typically we use a time step of 1/60 of a second (60Hz) and 6 velocity/2 positio
     
             @QUESTION : 1 batch for each shape? multiple lmn with same batch @ diff pos? (
    
-    @FUTURE 3 problemes
-    -------------------
-       1 input : svg files
-            --> svgbatch 
-       2 strorage of paths etc.. for transformation and then caching
-            --> svgbatch 
-                - better than svg from nodebox and than squirtle
-                - clean
-                - has path 
-                - simple access to points
-       3 combined kinematics (hinges)
-            --> layers as in nodebox (+center of layer)
+@FUTURE 3 problemes
+-------------------
+
+1 input : svg files
+    --> svgbatch 
+2 strorage of paths etc.. for transformation and then caching
+    --> svgbatch 
+        - better than svg from nodebox and than squirtle
+        - clean
+        - has path 
+        - simple access to points
+3 combined kinematics (hinges)
+    --> layers as in nodebox (+center of layer)
+
     
-    
-    SCENE is a folder
-    -----------------
+SCENE is a folder
+-----------------
+
         actor1.py
             methods:
                 draw()

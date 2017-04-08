@@ -14,6 +14,7 @@ SPEED=TWOPI/2  # TWOPI/2 --> 1 engine revolution in 2 seconds
 BOW = pyglet.media.load('bow.wav', streaming=False)
 BOW1 = pyglet.media.load('bow1.wav', streaming=False)
 BOW.play()
+
 ##  CANVAS -------------------------------------------------------------------
 class Canvas(pyglet.window.Window):
     """
@@ -25,6 +26,7 @@ class Canvas(pyglet.window.Window):
             alpha=0, omega=SPEED):
         pyglet.window.Window.__init__(self,fullscreen=True)
         self.set_mouse_visible(False)
+        self.soundon=1
         self.w, self.h, self.fps = 1.0*w, 1.0*h, fps
         self.layers, self.actions, self.observers = [], [], []
         self.i_layers = [] # those layers visibility is toggled by key 'I'
@@ -38,7 +40,16 @@ class Canvas(pyglet.window.Window):
         self.target_x, self.target_y = self.x, self.y
         self.target_scale = self.scale
 
+        self.setup_gl()
         pyglet.clock.schedule_interval(self.update, 1.0/fps)
+
+    def setup_gl(self):
+        """Set various pieces of OpenGL state for better rendering of SVG.
+
+        """
+        GL.glEnable(GL.GL_LINE_SMOOTH)
+        GL.glEnable(GL.GL_BLEND)
+        GL.glBlendFunc(GL.GL_SRC_ALPHA, GL.GL_ONE_MINUS_SRC_ALPHA)
         GL.glTranslatef(0.5*self.w, 0.5*self.h, 0.0)  # Origin > screen center
         GL.glClearColor(0.0, 0.0, 0.0, 0.0)  # set background color to black
 
@@ -50,6 +61,7 @@ class Canvas(pyglet.window.Window):
         elif symbol == pyglet.window.key.RIGHT: self.camera_pan(-self.scale/2,0)
         elif symbol == pyglet.window.key.DOWN: self.camera_pan(0, self.scale/2)
         elif symbol == pyglet.window.key.UP: self.camera_pan(0, -self.scale/2)
+        elif symbol == pyglet.window.key.S: self.soundon = not self.soundon
         elif symbol == pyglet.window.key.I:
             for l in self.i_layers: l.visible =not l.visible
 
@@ -101,17 +113,7 @@ class Canvas(pyglet.window.Window):
         self.clear()
         self.camera_update()
         self.camera_focus()
-
-        for l in self.layers:
-            if l.visible:
-                GL.glPushMatrix()
-                GL.glTranslatef(l.posx, l.posy, 0)
-                for s in l.shapes:
-                    GL.glPushMatrix()
-                    GL.glTranslatef(s.pos[0], s.pos[1], 0)
-                    s.batch.draw()  # * expands list (no append method)
-                    GL.glPopMatrix()
-                GL.glPopMatrix()
+        for l in self.layers: l.draw()
 
     def update(self,dt):
         self.engine_update(dt)
@@ -136,6 +138,14 @@ class Layer(object):
     def toggles(self):
         canvas.i_layers.append(self)
 
+    def draw(self):
+        if self.visible:
+                GL.glPushMatrix()
+                GL.glTranslatef(self.posx, self.posy, 0)
+                for s in self.shapes:
+                    s.draw()  # * expands list (no append method)
+                GL.glPopMatrix()
+
     def move(self,dx,dy):
         self.posx += dx
         self.posy += dy
@@ -157,11 +167,17 @@ class Shape(object):
         if not hasattr(self,'color'): self.color=(0,0,0)
         if not hasattr(self,'glstring'): self.glstring=(
                 2,pyglet.gl.GL_LINES, None, ('v2f/static',0,0,1,1))
-        self.getbatch()
+        if not hasattr(self,'batch'): self.getbatch()
 
     def getbatch(self):
         self.batch = pyglet.graphics.Batch()
         self.batch.add(*self.glstring)
+
+    def draw(self):
+        GL.glPushMatrix()
+        GL.glTranslatef(self.pos[0], self.pos[1], 0)
+        self.batch.draw()  # * expands list (no append method)
+        GL.glPopMatrix()
 
     def translate(self, x, y):
         for i in xrange(0,len(self.vtx),2):
@@ -179,7 +195,6 @@ class Shape(object):
     # ie: in case positions of the end points of a Line are modified.
     def update(self,dt):
         self.getbatch()
-
 
 class Point(Shape):
     """
@@ -314,19 +329,19 @@ class reverse_dir(object):
         newdiry = cmp(self.target.pos[1],self.previous[1])
         if newdirx != self.dirx:
             self.dirx = newdirx
-            BOW.play()
+            if canvas.soundon : BOW.play()
 
             print self.target, "reversed dir x"
         elif newdiry != self.diry:
             self.diry = newdiry
-            BOW1.play()
+            if canvas.soundon : BOW1.play()
 
             print self.target, "reversed dir y"
         else:
             pass
 
 ## SCENE SETUP ----------------------------------------------------------------
-class Cell(object):
+class Heart(object):
     """
     cell,
     K1,K2,K3 are real life kapla dimensions in mm
@@ -376,7 +391,7 @@ class Cell(object):
         layer.shapes.extend((r21,r22,r23,r24))
 
 
-class Cell_Mechanics(object):
+class Heart_Mechanics(object):
     """
     hidden mechanism behind the scene with same args, goes on a toggle layer
     """
@@ -422,7 +437,6 @@ if __name__ == "__main__":
 
     layer_1d=Layer(visible=True)
     layer_1d.move(96,-96)
-
 
     layer_m1=Layer(visible=False)
     layer_m1.move(0,0)
@@ -477,52 +491,52 @@ if __name__ == "__main__":
     # c1 has thin sliders: K1,K2,K3=6,11,34. total figure size = 96x96
     # (K3+K2+K1+K2+K3 = size of the cell)
     # c2 has thick sliders (11), K1,K2,K3=11,6,34 total figure size = 91x91
-    c1=Cell(layer=layer_1,K1=6,K2=11,K3=34,north=96,east=96,
+    c1=Heart(layer=layer_1,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=0,vdir=1,vphase=0)
-    mc1=Cell_Mechanics(layer=layer_m1,K1=6,K2=11,K3=34,north=96,east=96,
-            hdir=1,hphase=0,vdir=1,vphase=0)
-
-    c1a=Cell(layer=layer_1a,K1=6,K2=11,K3=34,north=96,east=96,
-            hdir=1,hphase=0,vdir=1,vphase=0)
-    mc1a=Cell_Mechanics(layer=layer_m1a,K1=6,K2=11,K3=34,north=96,east=96,
+    mc1=Heart_Mechanics(layer=layer_m1,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=0,vdir=1,vphase=0)
 
-    c1b=Cell(layer=layer_1b,K1=6,K2=11,K3=34,north=96,east=96,
+    c1a=Heart(layer=layer_1a,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=0)
+    mc1a=Heart_Mechanics(layer=layer_m1a,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=0)
+
+    c1b=Heart(layer=layer_1b,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=0,vdir=1,vphase=PI/4)
-    mc1b=Cell_Mechanics(layer=layer_m1b,K1=6,K2=11,K3=34,north=96,east=96,
+    mc1b=Heart_Mechanics(layer=layer_m1b,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=0,vdir=1,vphase=PI/4)
 
-    c1c=Cell(layer=layer_1c,K1=6,K2=11,K3=34,north=96,east=96,
+    c1c=Heart(layer=layer_1c,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=PI/8,vdir=1,vphase=0)
-    mc1c=Cell_Mechanics(layer=layer_m1c,K1=6,K2=11,K3=34,north=96,east=96,
+    mc1c=Heart_Mechanics(layer=layer_m1c,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=PI/8,vdir=1,vphase=0)
 
-    c1d=Cell(layer=layer_1d,K1=6,K2=11,K3=34,north=96,east=96,
+    c1d=Heart(layer=layer_1d,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=0,vdir=1,vphase=PI/12)
-    mc1d=Cell_Mechanics(layer=layer_m1d,K1=6,K2=11,K3=34,north=96,east=96,
+    mc1d=Heart_Mechanics(layer=layer_m1d,K1=6,K2=11,K3=34,north=96,east=96,
             hdir=1,hphase=0,vdir=1,vphase=PI/12)
 
-    c2=Cell(layer=layer_2,K1=11,K2=6,K3=34, north=96,east=96,
+    c2=Heart(layer=layer_2,K1=11,K2=6,K3=34, north=96,east=96,
             hdir=-1,hphase=0,vdir=1,vphase=PI)
-    mc2=Cell_Mechanics(layer=layer_m2,K1=11,K2=6,K3=34, north=96,east=96,
-            hdir=-1,hphase=0,vdir=1,vphase=PI)
-
-    c2a=Cell(layer=layer_2a,K1=11,K2=6,K3=34, north=96,east=96,
-            hdir=-1,hphase=0,vdir=1,vphase=PI)
-    mc2a=Cell_Mechanics(layer=layer_m2a,K1=11,K2=6,K3=34, north=96,east=96,
+    mc2=Heart_Mechanics(layer=layer_m2,K1=11,K2=6,K3=34, north=96,east=96,
             hdir=-1,hphase=0,vdir=1,vphase=PI)
 
-    c2b=Cell(layer=layer_2b,K1=11,K2=6,K3=34, north=96,east=96,
+    c2a=Heart(layer=layer_2a,K1=11,K2=6,K3=34, north=96,east=96,
             hdir=-1,hphase=0,vdir=1,vphase=PI)
-    mc2b=Cell_Mechanics(layer=layer_m2b,K1=11,K2=6,K3=34, north=96,east=96,
+    mc2a=Heart_Mechanics(layer=layer_m2a,K1=11,K2=6,K3=34, north=96,east=96,
             hdir=-1,hphase=0,vdir=1,vphase=PI)
 
-    c2c=Cell(layer=layer_2c,K1=11,K2=6,K3=34, north=96,east=96,
+    c2b=Heart(layer=layer_2b,K1=11,K2=6,K3=34, north=96,east=96,
             hdir=-1,hphase=0,vdir=1,vphase=PI)
-    mc2c=Cell_Mechanics(layer=layer_m2c,K1=11,K2=6,K3=34, north=96,east=96,
+    mc2b=Heart_Mechanics(layer=layer_m2b,K1=11,K2=6,K3=34, north=96,east=96,
             hdir=-1,hphase=0,vdir=1,vphase=PI)
+
+    c2c=Heart(layer=layer_2c,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+    mc2c=Heart_Mechanics(layer=layer_m2c,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+
 
     # canvas-------------------------------------------------------------------
     canvas.target_scale=50
     pyglet.app.run()
-
