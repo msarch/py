@@ -7,12 +7,13 @@ import pyglet
 import math
 import pyglet.gl as GL
 
-XMAX, YMAX, FPS = 1280.0, 800.0, 60  # screen x,y dimensions, target FPS for anim.
+SCREEN_WIDTH, SCREEN_HEIGHT, FPS = 1280, 800, 60
 PI, TWOPI = math.pi, math.pi*2
-K1, K2, K3 = 6, 11, 33  # kapla size (mm)
-XRAD = ((K3+K1+K2+K3+K1)/2-K3/2)+K3/2-K2/2
-YRAD = (K3+K1+K2+K3+K1)/2-K3/2
+SPEED=TWOPI/2  # TWOPI/2 --> 1 engine revolution in 2 seconds
 
+BOW = pyglet.media.load('bow.wav', streaming=False)
+BOW1 = pyglet.media.load('bow1.wav', streaming=False)
+BOW.play()
 ##  CANVAS -------------------------------------------------------------------
 class Canvas(pyglet.window.Window):
     """
@@ -20,35 +21,41 @@ class Canvas(pyglet.window.Window):
     running following sets, in that order: engines, actions, observers
     displaying : list of shapes
     """
-    def __init__(self, xmax, ymax, fps):
+    def __init__(self, w=SCREEN_WIDTH, h=SCREEN_HEIGHT, fps=FPS,
+            alpha=0, omega=SPEED):
         pyglet.window.Window.__init__(self,fullscreen=True)
         self.set_mouse_visible(False)
-        self.xmax, self.ymax, self.fps = xmax, ymax, fps
-        self.engines, self.shapes, self.actions, self.observers = [], [], [], []
+        self.w, self.h, self.fps = 1.0*w, 1.0*h, fps
+        self.layers, self.actions, self.observers = [], [], []
+        self.i_layers = [] # those layers visibility is toggled by key 'I'
+        self.alpha, self.omega = alpha, omega # start angle, angular velocity
+        self.cosalpha, self.sinalpha = math.cos(-self.alpha), math.sin(-self.alpha)
 
+        # camera stuff
         self.x, self.y = 0, 0
+        self.scale = 100
+        self.ratio= self.w/self.h
         self.target_x, self.target_y = self.x, self.y
-        self.scale = 85
         self.target_scale = self.scale
 
         pyglet.clock.schedule_interval(self.update, 1.0/fps)
-        GL.glTranslatef(self.xmax/2,self.ymax/2, 0.0)  # Origin > screen center
+        GL.glTranslatef(0.5*self.w, 0.5*self.h, 0.0)  # Origin > screen center
         GL.glClearColor(0.0, 0.0, 0.0, 0.0)  # set background color to black
 
     def on_key_press(self, symbol, modifiers):
         if symbol == pyglet.window.key.ESCAPE:self.close()
-        elif symbol == pyglet.window.key.PAGEUP: self.camera_zoom(1.25)
-        elif symbol == pyglet.window.key.PAGEDOWN: self.camera_zoom(0.8)
-        elif symbol == pyglet.window.key.LEFT: self.camera_pan(self.scale/2, 0)
-        elif symbol == pyglet.window.key.RIGHT: self.camera_pan(-self.scale/2, 0)
+        elif symbol == pyglet.window.key.PAGEDOWN: self.camera_zoom(1.25)
+        elif symbol == pyglet.window.key.PAGEUP: self.camera_zoom(0.8)
+        elif symbol == pyglet.window.key.LEFT: self.camera_pan(self.scale/2,0)
+        elif symbol == pyglet.window.key.RIGHT: self.camera_pan(-self.scale/2,0)
         elif symbol == pyglet.window.key.DOWN: self.camera_pan(0, self.scale/2)
         elif symbol == pyglet.window.key.UP: self.camera_pan(0, -self.scale/2)
+        elif symbol == pyglet.window.key.I:
+            for l in self.i_layers: l.visible =not l.visible
 
-    def camera_update(self):  # update reaches target in ten times
-        self.x += (self.target_x - self.x) * 0.1
-        self.y += (self.target_y - self.y) * 0.1
-        self.scale += (self.target_scale - self.scale) * 0.1
-
+    # camera ------------------------------------------------------------------
+        # Camera stuff mostly from Jonathan Hartley (tartley@tartley.com)
+        # demo's stretching pyglets wings
     def camera_zoom(self, factor):
         self.target_scale *= factor
 
@@ -56,63 +63,94 @@ class Canvas(pyglet.window.Window):
         self.target_x += dx
         self.target_y += dy
 
-    def camera_focus(self, width, height):
+    def camera_update(self):  # update reaches target in ten times
+        self.x += (self.target_x - self.x) * 0.1
+        self.y += (self.target_y - self.y) * 0.1
+        self.scale += (self.target_scale - self.scale) * 0.1
+
+    def camera_focus(self):
         "Set projection and modelview matrices ready for rendering"
         # Set projection matrix suitable for 2D rendering"
         GL.glMatrixMode(GL.GL_PROJECTION)
         GL.glLoadIdentity()
-        a = width / height
-        GL.gluOrtho2D(-self.scale * a, self.scale * a, -self.scale, self.scale)
-
-       # Set modelview matrix to move & scale to camera position"
+        	# GL.gluOrtho2D(left,right,bottom,top)
+        GL.gluOrtho2D(
+                -self.scale * self.ratio,
+                self.scale * self.ratio,
+                -self.scale,
+                self.scale)
+        # Set modelview matrix to move & scale to camera position"
         GL.glMatrixMode(GL.GL_MODELVIEW)
         GL.glLoadIdentity()
         GL.gluLookAt(self.x, self.y, 1.0, self.x, self.y, -1.0, 0.0, 1.0, 0.0)
 
-    def draw(self):
-        # Camera stuff mostly from Jonathan Hartley (tartley@tartley.com)
-        # demos 'stretching pyglets wings'
-        self.clear()
-        self.camera_update()
-        self.camera_focus(self.xmax, self.ymax)
 
-        for s in self.shapes:
-            GL.glPushMatrix()
-            GL.glTranslatef(s.pos[0], s.pos[1], 0)
-            s.batch.draw()  # * expands list (no append method)
-            GL.glPopMatrix()
-
-    def update(self,dt):
-        for e in self.engines:
-            e.update(dt)
-        for a in self.actions:
-            a.update(dt)
-        for o in self.observers:
-            o.update(dt)
-        self.draw()
-
-
-##--- ROTATING ENGINE ---------------------------------------------------------
-class Engine(object):
-    """
-    will keep updating sine and cosine values of a uniform circular motion
-    starting at angle : alpha
-    angular velocity (per sec) : omega
-    """
-    def __init__(self, alpha=0.0, omega=0.5*TWOPI):
-        self.alpha,self.omega = alpha,omega # start angle, angular velocity
-        self.cosa, self.sina = math.cos(self.alpha), math.sin(self.alpha)
-
-    def update(self,dt):
+    # engine ------------------------------------------------------------------
+    def engine_update(self,dt):
+        """
+        updates sine and cosine values in a uniform circular motion
+        starting at angle : alpha
+        angular velocity (per sec) : omega
+        """
         self.alpha += dt * self.omega
         self.alpha = self.alpha % (TWOPI)  # stay within [0,2*Pi]
         # updates 2 coordinates with an harmonic linear osillation
-        self.cosa, self.sina = math.cos(self.alpha), math.sin(self.alpha)
+        self.cosalpha, self.sinalpha = math.cos(self.alpha), math.sin(self.alpha)
 
+    def draw(self):
+        self.clear()
+        self.camera_update()
+        self.camera_focus()
+
+        for l in self.layers:
+            if l.visible:
+                GL.glPushMatrix()
+                GL.glTranslatef(l.posx, l.posy, 0)
+                for s in l.shapes:
+                    GL.glPushMatrix()
+                    GL.glTranslatef(s.pos[0], s.pos[1], 0)
+                    s.batch.draw()  # * expands list (no append method)
+                    GL.glPopMatrix()
+                GL.glPopMatrix()
+
+    def update(self,dt):
+        self.engine_update(dt)
+        for action in self.actions: action.update(dt)
+        for observer in self.observers: observer.update(dt)
+        self.draw()
+
+##--- DEFINE UNIQUE CANVAS HERE -----------------------------------------------
+canvas = Canvas()
+
+##--- LAYERS SECTION ----------------------------------------------------------
+class Layer(object):
+    """
+    group of displayed elements
+    """
+    def __init__(self,posx=0,posy=0, visible=True):
+        self.posx, self.posy= posx, posy
+        self.shapes = []
+        self.visible=visible
+        canvas.layers.append(self)
+
+    def toggles(self):
+        canvas.i_layers.append(self)
+
+    def move(self,dx,dy):
+        self.posx += dx
+        self.posy += dy
+
+
+##--- DEFINE DEFAULT LAYER HERE -----------------------------------------------
+layer_0=Layer()
 
 ##--- SHAPES SECTION ----------------------------------------------------------
 class Shape(object):
+    """
+    superclass for displayed elements
+    """
     def setup(self):
+        if not hasattr(self,'layer'): self.layer=layer_0
         if not hasattr(self,'pos'): self.pos=(0,0)
         if not hasattr(self,'vtx'): self.vtx=[0,0]
         # in this list vtx coordinates are flatened: [x0,y0,x1,y1,x2,y2...etc.]
@@ -149,7 +187,8 @@ class Point(Shape):
     """
     def __init__(self):
         self.vtx=[-3,0,3,0,0,0,0,3,0,-3]
-        self.glstring=(5,pyglet.gl.GL_LINE_STRIP, None, ('v2i/static',self.vtx))
+        self.glstring=(5,pyglet.gl.GL_LINE_STRIP, None, ('v2i/static',
+            self.vtx))
         self.setup()
 
 
@@ -166,11 +205,26 @@ class Line(Shape):
 
 class Rect(Shape):
     """
-    Rectangle, orthogonal, origin is bottom left
+    Rectangle, orthogonal, FILED, origin is bottom left
+    N,S,E,W = north, south east, west coordinates
+      _N_
+    W|___|E
+       S
     """
-    def __init__(self, S=0, E=0, N=K2, W=K3):  #kapla default size
+    def __init__(self, N=0, S=0, E=0, W=0):  #kapla default size
         self.vtx=[E, S, W, S, W, N, E, N]
         self.glstring=(4,pyglet.gl.GL_TRIANGLE_FAN, None, ('v2f/static',
+        self.vtx))
+        self.setup()
+
+
+class Rect2(Shape):
+    """
+    Rectangle, orthogonal, OUTLINE ONLY, origin is bottom left
+    """
+    def __init__(self, S=0, E=0, N=0, W=0):  #kapla default size
+        self.vtx=[E, S, W, S, W, N, E, N, E, S]
+        self.glstring=(5,pyglet.gl.GL_LINE_STRIP, None, ('v2f/static',
         self.vtx))
         self.setup()
 
@@ -200,115 +254,275 @@ class Circle(Shape):
 
 ##--- CROSSHAIR VERTICAL
 class Vline(Shape):
+    """
+    fullscreen vertical line
+    """
     def __init__(self):
         self.vtx=[0,0] # x only
         self.glstring=(2,pyglet.gl.GL_LINES, None, ('v2f/static',
-        (self.vtx[0],-YMAX,self.vtx[0],YMAX)))
+        (self.vtx[0],-SCREEN_HEIGHT,self.vtx[0],SCREEN_HEIGHT)))
         self.setup()
 
 
 ##--- CROSSHAIR HORIZONTAL
 class Hline(Shape):
+    """
+    fullscreen horizontal line
+    """
     def __init__(self):
         self.vtx=[0,0]
         self.glstring=(2,pyglet.gl.GL_LINES, None, ('v2f/static',
-        (-XMAX, self.vtx[1],XMAX,self.vtx[1])))
+        (-SCREEN_WIDTH, self.vtx[1],SCREEN_WIDTH,self.vtx[1])))
         self.setup()
 
 
 ##--- ACTIONS -----------------------------------------------------------------
 #--- HARMONIC OSILLATION
 class Scotchyoke(object):
-    """ links target X or Y coordinate to canvas circular motion generator"""
-    def __init__(self,engine,target=None,Hradius=1,Vradius=1,center=(0,0),phase=0):
-        self.e=engine
+    """
+    modifies target X or Y coordinate to match canvas circular motion generator
+    """
+    def __init__(self,target,Hradius=0,Vradius=0,center=(0,0),direction=1,phase=0):
         self.target = target
         self.Hradius, self.Vradius  = Hradius, Vradius
         self.dx,self.dy=center
-        self.cosb, self.sinb = math.cos(phase), math.sin(phase)
+        self.cosb, self.sinb = math.cos(phase)*direction, math.sin(phase)
+        cosa, sina = canvas.cosalpha, canvas.sinalpha
 
     def update(self,dt):
         #cos(A+B)=cos A cos B - sin A sin B
-        cosab=self.e.cosa*self.cosb-self.e.sina*self.sinb
+        cosab=canvas.cosalpha*self.cosb-canvas.sinalpha*self.sinb
         #sin(A+B)=sin A cos B + cos A sin B
-        sinab=self.e.sina*self.cosb+self.e.cosa*self.sinb
+        sinab=canvas.sinalpha*self.cosb+canvas.cosalpha*self.sinb
+        #set target position
         self.target.pos=(self.dx+cosab*self.Hradius,self.dy+sinab*self.Vradius)
 
 
 ##--- OBSERVERS SECTION -------------------------------------------------------
 #--- CHANGE COLOR ON BOUNCE
 class reverse_dir(object):
+    """
+    Checks for each axis if direction of target motion has changed
+    """
     def __init__(self,target=None):
         self.target = target
         self.previous=self.target.pos
-        self.dirx=0
+        self.dirx, self.diry = 0, 0
 
     def update(self,dt):
-        newdir = cmp(self.target.pos[0],self.previous[0])
-        if newdir == self.dirx:
-            pass
-        else:
-            self.dirx = newdir
-            print self.target, "reversed dir x"
+        newdirx = cmp(self.target.pos[0],self.previous[0])
+        newdiry = cmp(self.target.pos[1],self.previous[1])
+        if newdirx != self.dirx:
+            self.dirx = newdirx
+            BOW.play()
 
+            print self.target, "reversed dir x"
+        elif newdiry != self.diry:
+            self.diry = newdiry
+            BOW1.play()
+
+            print self.target, "reversed dir y"
+        else:
+            pass
 
 ## SCENE SETUP ----------------------------------------------------------------
-def setup(canvas):
-    # engines -----------------------------------------------------------------
-    e=Engine()
-    canvas.engines.append(e)
+class Cell(object):
+    """
+    cell,
+    K1,K2,K3 are real life kapla dimensions in mm
+    movement fits the extents dimensions N,S,E,W (north, south east, west)
+    """
+    def __init__(self,layer=layer_0,
+            K1=6,K2=11,K3=34,
+            north=94, south=0,east=94,west=0,
+            hdir=1,hphase=0,vdir=1,vphase=0):
 
-    # moving objects ----------------------------------------------------------
-    #    . o
-    #  . . -
-    #  o |
-    r1 = Rect().translate(-K3/2,-K2/2)   #sliding, horizontal
-    l1 = Vline()                         #moving with r1
-    l1a = Vline()                        #moving with r1
-    c1 = Circle(radius=K3/2)             #moving with r1
-    canvas.shapes.extend((r1,l1,l1a,c1))
+        Y_RAD = (north-south)/2-K3/2  #extends of the giration
+        X_RAD = (east-west)/2-K3/2
 
-    r2 = Rect(N=K3,W=K2).translate(-K2/2,-K3/2)   #sliding, vertical
-    l2 = Hline()                                  #moving with r2
-    l2a = Hline()                                 #moving with r2
-    c2 = Circle(radius=K3/2)                      #moving with r2
-    canvas.shapes.extend((r2,l2,l2a,c2))
+        # moving objects ------------------------------------------------------
+        #    . o
+        #  . . -
+        #  o |
+        # sliding rect, horizontal
+        r1 = Rect(N=K1,W=K3).translate(-K3/2,-K1/2)  #r1 horizontal sliding
+        r2 = Rect(N=K3,W=K1).translate(-K1/2,-K3/2)  #r2 vertical sliding
+        layer.shapes.extend((r1,r2))
+        # movement
+        s1 = Scotchyoke(r1, Hradius=X_RAD, Vradius=0, center=(0,0),direction=hdir,phase=hphase)
+        s2 = Scotchyoke(r2, Hradius=0, Vradius=Y_RAD, direction=vdir, phase=vphase)
+        canvas.actions.extend((s1,s2))
 
-    s1 = Scotchyoke(e, target=r1, Hradius=XRAD, Vradius=0, center=(0,0))
-    s2 = Scotchyoke(e, target=l1, Hradius=XRAD, Vradius=0, center=(K3/2,0))
-    s2a= Scotchyoke(e, target=l1a, Hradius=XRAD, Vradius=0, center=(-K3/2,0))
-    s3 = Scotchyoke(e, target=c1, Hradius=XRAD, Vradius=XRAD)
-    canvas.actions.extend((s1,s2,s2a,s3))
+        # observers ---------------------------------------------------------------
+        o1=reverse_dir(target=r1)  #check if r1 has gone reverse
+        o2=reverse_dir(target=r2)  #check if r2 has gone reverse
+        canvas.observers.extend((o1,o2))
 
-    s4 = Scotchyoke(e, target=r2, Hradius=0, Vradius=YRAD, phase=PI)
-    s5 = Scotchyoke(e, target=l2, Hradius=0, Vradius=YRAD, center=(0,K3/2), phase=PI)
-    s5a= Scotchyoke(e, target=l2a, Hradius=0, Vradius=YRAD, center=(0,-K3/2), phase=PI)
-    s6 = Scotchyoke(e, target=c2, Hradius=YRAD, Vradius=YRAD, phase=PI)
-    canvas.actions.extend((s4,s5,s5a,s6))
+        # still objects -----------------------------------------------------------
+        #  _||_
+        #  -  -
+        #   ||
+        #verticals
+        r11 = Rect(N=K3,W=K2).translate(-K2-K1/2,K1/2+K2)         #top left
+        r12 = Rect(N=K3,W=K2).translate(K1/2,K1/2+K2)             #top right
+        r13 = Rect(N=K3,W=K2).translate(-K1/2-K2,-K3-K1/2-K2)   #bottom left
+        r14 = Rect(N=K3,W=K2).translate(K1/2,-K3-K1/2-K2)       #bottom right
+        layer.shapes.extend((r11,r12,r13,r14))
+        # horizontals
+        r21 = Rect(N=K2,W=K3).translate(K1/2+K2,K1/2)             #top right
+        r22 = Rect(N=K2,W=K3).translate(K1/2+K2,-K2-K1/2)       #bottom right
+        r23 = Rect(N=K2,W=K3).translate(-K3-K1/2-K2,K1/2)         #top left
+        r24 = Rect(N=K2,W=K3).translate(-K3-K1/2-K2,-K2-K1/2)   #bottom left
+        layer.shapes.extend((r21,r22,r23,r24))
 
-    # observers ---------------------------------------------------------------
-    o1=reverse_dir(target=r1)  #check if shape has gone reverse
-    canvas.observers.append((o1))
 
-    # still objects -----------------------------------------------------------
-    #  _||_
-    #  -  -
-    #   ||
-    r11 = Rect(N=K3,W=K1).translate(-K1-K2/2,K2/2+K1)          #vertical top left
-    r12 = Rect(N=K3,W=K1).translate(K2/2,K2/2+K1)             #vertical top right
-    r13 = Rect(N=K3,W=K1).translate(-K2/2-K1,-K3-K2/2-K1-1)     #vertical bottom left
-    r14 = Rect(N=K3,W=K1).translate(K2/2,-K3-K2/2-K1-1)        #vertical bottom right
+class Cell_Mechanics(object):
+    """
+    hidden mechanism behind the scene with same args, goes on a toggle layer
+    """
+    def __init__(self,layer=layer_0,
+            K1=6,K2=12,K3=33,
+            north=94, south=0,east=94,west=0,
+            hdir=1,hphase=0,vdir=1,vphase=0):
 
-    r21 = Rect(N=K1,W=K3).translate(K2/2+K1,K2/2)         #horizontal top right
-    r22 = Rect(N=K1,W=K3).translate(K2/2+K1,-K1-K2/2-1)    #horizontal bottom right
-    r23 = Rect(N=K1,W=K3).translate(-K3-K2/2-K1,K2/2)      #horizontal top left
-    r24 = Rect(N=K1,W=K3).translate(-K3-K2/2-K1,-K1-K2/2-1) #horizontal bottom left
+        Y_RAD = (north-south)/2-K3/2  #extends of the giration
+        X_RAD = (east-west)/2-K3/2
+        # shapes
+        rc1 = Rect2(N=north/2, S=-north/2, W=K3)  #slot for r1
+        rc2 = Rect2(W=east/2, E=-east/2, N=K3/2, S=-K3/2)  #r2 slot
+        c1 = Circle(radius=K3/2)  #peg for slot 1 movement
+        c2 = Circle(radius=K3/2)  #peg for slot 2 movement
+        layer.shapes.extend((c1,c2,rc1,rc2))
+        # movement
+        s3 = Scotchyoke(c1, Hradius=X_RAD, Vradius=Y_RAD, direction=hdir, phase=hphase)
+        s4 = Scotchyoke(c2, Hradius=Y_RAD, Vradius=Y_RAD, direction=vdir, phase=vphase)
+        s5 = Scotchyoke(rc1, Hradius=X_RAD, Vradius=0, center=(-K3/2,0), direction=hdir, phase=hphase)
+        s6 = Scotchyoke(rc2, Hradius=0, Vradius=Y_RAD, direction=vdir, phase=vphase)
+        canvas.actions.extend((s3,s4,s5,s6))
+        #outside frame
+        rc = Rect2(W=east/2, E=-east/2, N=north/2, S=-north/2)
+        layer.shapes.append((rc))
 
-    pt = Point()
-    canvas.shapes.extend((r11,r12,r13,r14,r21,r22,r23,r24,pt))
 
 ##  MAIN ----------------------------------------------------------------------
 if __name__ == "__main__":
-    canvas = Canvas(XMAX,YMAX,FPS)  # screen size, FPS
-    setup(canvas)
+
+    # layers ------------------------------------------------------------------
+    layer_1=Layer(visible=True)
+    layer_1.move(0,0)  #move aside half a cell
+
+    layer_1a=Layer(visible=True)
+    layer_1a.move(-96,-96)
+
+    layer_1b=Layer(visible=True)
+    layer_1b.move(-96,96)
+
+    layer_1c=Layer(visible=True)
+    layer_1c.move(96,96)
+
+    layer_1d=Layer(visible=True)
+    layer_1d.move(96,-96)
+
+
+    layer_m1=Layer(visible=False)
+    layer_m1.move(0,0)
+    layer_m1.toggles()
+
+    layer_m1a=Layer(visible=False)
+    layer_m1a.move(-96,-96)
+    layer_m1a.toggles()
+
+    layer_m1b=Layer(visible=False)
+    layer_m1b.move(-96,96)
+    layer_m1b.toggles()
+
+    layer_m1c=Layer(visible=False)
+    layer_m1c.move(96,96)
+    layer_m1c.toggles()
+
+    layer_m1d=Layer(visible=False)
+    layer_m1d.move(96,-96)
+    layer_m1d.toggles()
+
+    #C2 type-----------------------------
+    layer_2=Layer(visible=True)
+    layer_2.move(96,0)
+
+    layer_2a=Layer(visible=True)
+    layer_2a.move(-96,0)
+
+    layer_2b=Layer(visible=True)
+    layer_2b.move(0,96)
+
+    layer_2c=Layer(visible=True)
+    layer_2c.move(0,-96)
+
+    layer_m2=Layer(visible=False)
+    layer_m2.move(96,0)
+    layer_m2.toggles()
+
+    layer_m2a=Layer(visible=False)
+    layer_m2a.move(-96,0)
+    layer_m2a.toggles()
+
+    layer_m2b=Layer(visible=False)
+    layer_m2b.move(0,96)
+    layer_m2b.toggles()
+
+    layer_m2c=Layer(visible=False)
+    layer_m2c.move(0,-96)
+    layer_m2c.toggles()
+
+    # cells -------------------------------------------------------------------
+    # c1 has thin sliders: K1,K2,K3=6,11,34. total figure size = 96x96
+    # (K3+K2+K1+K2+K3 = size of the cell)
+    # c2 has thick sliders (11), K1,K2,K3=11,6,34 total figure size = 91x91
+    c1=Cell(layer=layer_1,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=0)
+    mc1=Cell_Mechanics(layer=layer_m1,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=0)
+
+    c1a=Cell(layer=layer_1a,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=0)
+    mc1a=Cell_Mechanics(layer=layer_m1a,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=0)
+
+    c1b=Cell(layer=layer_1b,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=PI/4)
+    mc1b=Cell_Mechanics(layer=layer_m1b,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=PI/4)
+
+    c1c=Cell(layer=layer_1c,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=PI/8,vdir=1,vphase=0)
+    mc1c=Cell_Mechanics(layer=layer_m1c,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=PI/8,vdir=1,vphase=0)
+
+    c1d=Cell(layer=layer_1d,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=PI/12)
+    mc1d=Cell_Mechanics(layer=layer_m1d,K1=6,K2=11,K3=34,north=96,east=96,
+            hdir=1,hphase=0,vdir=1,vphase=PI/12)
+
+    c2=Cell(layer=layer_2,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+    mc2=Cell_Mechanics(layer=layer_m2,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+
+    c2a=Cell(layer=layer_2a,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+    mc2a=Cell_Mechanics(layer=layer_m2a,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+
+    c2b=Cell(layer=layer_2b,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+    mc2b=Cell_Mechanics(layer=layer_m2b,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+
+    c2c=Cell(layer=layer_2c,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+    mc2c=Cell_Mechanics(layer=layer_m2c,K1=11,K2=6,K3=34, north=96,east=96,
+            hdir=-1,hphase=0,vdir=1,vphase=PI)
+
+    # canvas-------------------------------------------------------------------
+    canvas.target_scale=50
     pyglet.app.run()
+
