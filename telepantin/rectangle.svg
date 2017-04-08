@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+        
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 20010904//EN" "http://www.w3.org/TR/2001/REC-SVG-20010904/DTD/svg10.dtd">
+        
+<svg width="1280" height="800" xml:lang="fr" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<!--
+The key point is draw outer shape and inner shapes(holes) in different direction (clockwise vs anti-clockwise).
+-->
+
+<path 
+fill="#9F3B4B" 
+d="
+M0,0 
+    h1280
+    v800
+    h-1280
+    v-800z 
+M640,400 
+    v80
+    h128
+    v-80z 
+    h-128
+    "/>
+
+/>
+</svg>
