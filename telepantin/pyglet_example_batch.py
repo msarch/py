@@ -36,11 +36,11 @@ class Sketch(pyglet.graphics.Group):
 
 # -----------------------------------------------------------------------------
 g1= Sketch()
-string1 =(3,
+string1 =(6,
         pyglet.gl.GL_TRIANGLES,
         g1,
-        ('v2f/static',(0,0,0,100,100,400)),
-        ('c4B/static', (255,0,0,0)*3)
+        ('v2f/static',(0,0,0,100,100,100,100,100,100,0,0,0)),
+        ('c4B/static', (255,0,0,0)*6)
         )
 string2 =(3,
         pyglet.gl.GL_TRIANGLES,
@@ -66,19 +66,27 @@ red_rec=batch.add(*string2)
 # the correct vertex list to provide the vertex list is:
 # A, A, B, C, D, D
 
-g2= Sketch()
-string3=(6,
-        pyglet.gl.GL_TRIANGLE_FAN,
-        g1,
-        ('v2f/static',(0,100,0,100,0,140,100,140,100,100,100,100)),
-        ('c4B/static', (0,0,255,0)*6)
-        )
-rec2=batch.add(*string3)
+
+
+#g2= Sketch()
+#string3=(6,
+        #pyglet.gl.GL_TRIANGLE_FAN,
+        #g2,
+        #('v2f/static',(0,100,0,100,0,140,100,140,100,100,100,100)),
+        #('c4B/static', (0,0,255,0)*6)
+        #)
+#rec2=batch.add(*string3)
 
 points=batch.add(2, pyglet.gl.GL_POINTS, g1,
         ('v2i', (200, -115, 300, 135)),
         ('c3B', (255, 0, 255, 0, 255, 0))
         )
+
+print(points)
+n=points.get_size()
+print(n)
+v=points._get_vertices()
+print v
 
 # -----------------------------------------------------------------------------
 if __name__ == "__main__":
