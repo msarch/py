@@ -7,29 +7,29 @@ import pyglet
 from pyglet.gl import *
 
 SCREEN = 1280, 800
-ORIGIN = (SCREEN[0]/2.0, SCREEN[1]/2.0,0)
+ORIGIN = (640,400,0)
 PI, TWOPI = math.pi, math.pi * 2
-BGCOLOR = (0,0,0,0)           # background color
-SPEED = TWOPI / 2                # TWOPI/2 --> 1 engine revolution in 2 seconds
+OMEGA = TWOPI * 0.5            # angular velocity (rev/s) : TWOPI/2 = 1/2 rev/s
+alpha = 0.0                    # start angle
 
 #--------------------------------- PYGLET STUFF -------------------------------
 batch=pyglet.graphics.Batch()
 canvas = pyglet.window.Window(width=SCREEN[0], height=SCREEN[1],fullscreen=True)
 canvas.set_mouse_visible(False)
+pyglet.clock.set_fps_limit(60)
 
 glEnable(GL_LINE_SMOOTH)
 glEnable(GL_BLEND)
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) # transparency ???
 glHint(GL_LINE_SMOOTH_HINT, GL_DONT_CARE)
-glClearColor(*BGCOLOR)
-pyglet.clock.set_fps_limit(60)
+glClearColor(0,0,0,0)            # background color
 
 @canvas.event
 def on_key_press(symbol, modifiers):
     if symbol == pyglet.window.key.ESCAPE:
-        self.close()
-    elif symbol == pyglet.window.key.I:
-        pass  # invisibility toggle to be implemented as action                 TODO
+        pyglet.app.exit()
+    elif symbol == pyglet.window.key.I:   # interraction
+        toggle()
 
 @canvas.event
 def on_draw():
@@ -40,13 +40,13 @@ def on_draw():
 #------------------------------- DRAWING STUFF --------------------------------
 class Sketch(pyglet.graphics.Group):
 
-    def __init__(self, x=0, y=0, *args, **kwargs):
-        super(Sketch, self).__init__(*args, **kwargs)
-        self.x, self.y = x, y
+    def __init__(self,pos=ORIGIN):
+        super(Sketch, self).__init__()
+        self.pos=pos
 
     def set_state(self):
         glPushMatrix()
-        glTranslatef(self.x, self.y, 0)
+        glTranslatef(self.pos[0], self.pos[1], 0)
 
     def unset_state(self):
         glPopMatrix()
@@ -54,85 +54,59 @@ class Sketch(pyglet.graphics.Group):
     def clone(self):
         pass
 
-class Shape(pyglet.graphics.Vertex_list):
-
-    def __init__(self, x=0, y=0, *args, **kwargs):
-        super(Shape, self).__init__(*args, **kwargs)
-        self.x, self.y = x, y
-
-    def move(self, x=0, y=0):
-        for i in xrange(0, len(self.vtx), 2):
-            self.vtx[i] += x
-            self.vtx[i + 1] += y
-        self.vertex_list.vertices = self.vtx
-        return(self)
-
-        # don't forget to return self to be able to use short syntax
-        #     sh=shape(...).translate(...)
-        # rather than:
-        #     sh=shape(....)
-        #     sh.tranlate(...)
-
 
 #------------------------------- ACTION STUFF ---------------------------------
-pyglet.clock.schedule_interval(update, 1.0/60)
-
-def update(dt):
+def update(dt, *args, **kwargs):
     # yelds sine and cosine values from an uniform circular motion
-    alpha += dt * omega
+    global alpha
+    alpha += dt * OMEGA
     alpha = alpha % (TWOPI)  # stay within [0,2*Pi]
-    action1(dt , math.cos(alpha), math.sin(alpha))
-    action2(dt , math.cos(alpha), math.sin(alpha))
+    action1(dt, math.cos(alpha), math.sin(alpha))
+    action2(dt, math.cos(alpha), math.sin(alpha))
+    toggle(dt, math.cos(alpha), math.sin(alpha))
 
 
-def action1():
-    pass
+def action1(t,c,s):
+        print "+ time, cos, sin = ", t,c,s
 
-def action2():
-    pass
+def action2(t,c,s):
+        pass
 
+def toggle(*args,**kwargs):
+    #red_rec.vertices += 10
+    # the color attribute of the vertex can be updated:
+    blu_rec.colors[:3] = [int(200*args[1]), 0, 0, 255]
+    red_rec.vertices[:2] = [int(200*args[1]),int(200*args[1])]
 
-
-# caroucell -------------------------------------------------------------------
-
-##--- FILLED RECTANGLE --------------------------------------------------------
-def rect(N=0, S=0, E=0, W=0):  # kapla default size
-    """
-    Rectangle, orthogonal, FILED, origin is bottom left
-    N,S,E,W = north, south east, west coordinates
-      _N_
-    W|___|E
-       S
-    """
-    vtx = [E, S, W, S, W, N, E, N]
-    glstring = (4,
-            pyglet.gl.GL_TRIANGLE_FAN,
-            None,
-            ('v2f/static', self.vtx),
-            ('c4B/static', self.color * 4))
-    return()
-
-
-g1= Sketch(x=100,y=100)
-string1 =(4,
-        pyglet.gl.GL_TRIANGLE_FAN,
+# red rectangle ---------------------------------------------------------------
+g1= Sketch()
+red_rec=batch.add(
+        6,
+        pyglet.gl.GL_TRIANGLES,
         g1,
-        ('v2f/static',(0,0,0,40,100,40,100,0)),
-        ('c4B/static', (155,155,0,155)*4)
+        ('v2f/static',(0,0,0,100,100,100,100,100,100,0,0,0)),
+        ('c4B/static', (255,0,0,230)*6)
         )
-rec1=rect(10,10)
+print "+ vertices = ", red_rec.vertices
+print "+ vertices.count = ", red_rec.vertices.count
 
-g2= Sketch(200,200)
-string2=(4,
-        pyglet.gl.GL_TRIANGLE_FAN,
-        g2,
-        ('v2f/static',(100,0,100,40,200,40,200,0)),
-        ('c4B/static', (255,0,0,155)*4)
-        )
-rec2= Shape(string2,300,400)
+# blue triangle ---------------------------------------------------------------
+
+blu_rec=batch.add(
+        3,
+        pyglet.gl.GL_TRIANGLES,
+        g1,
+        'v2f/static',
+        'c4B/static')
+
+vtx2=[100,140,100,0,200,130]
+clr2=(0,10,205,250)
+blu_rec.vertices=[100,140,100,0,200,130]
+blu_rec.colors = (0,0,255,230)*3
 
 
+#----------------------------------- GO ---------------------------------------
 if __name__ == "__main__":
-    e=Engine()
+    pyglet.clock.schedule_interval(update, 1.0/60)
     pyglet.app.run()
 
