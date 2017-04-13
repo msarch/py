@@ -1,34 +1,39 @@
 #!/usr/bin/python
 # -*- coding: iso-8859-1 -*-
-# simple pyglet animation - msarch@free.fr - december 2016
-
+"""
+simple pyglet animation
+msarch - march 2017
+http://www.github.com/msarch/py
+"""
 import math
 import pyglet
 from pyglet.gl import *
 
 SCREEN = 1280, 800
-ORIGIN = (640,400,0)
+ORIGIN = [640,400,0]           # x,y = screen center, rotation = 0
+RADIUS = 390
 PI, TWOPI = math.pi, math.pi * 2
+RAD2DEG = 360 / TWOPI
 OMEGA = TWOPI * 0.5            # angular velocity (rev/s) : TWOPI/2 = 1/2 rev/s
 alpha = 0.0                    # start angle
-
+BLIP = [-3, 0, 3, 0, 0, 0, 0, 3, 0, -3]
 #--------------------------------- PYGLET STUFF -------------------------------
-batch=pyglet.graphics.Batch()
-canvas = pyglet.window.Window(width=SCREEN[0], height=SCREEN[1],fullscreen=True)
+batch = pyglet.graphics.Batch()
+canvas = pyglet.window.Window(fullscreen=True)
 canvas.set_mouse_visible(False)
 pyglet.clock.set_fps_limit(60)
 
 glEnable(GL_LINE_SMOOTH)
-glEnable(GL_BLEND)
-glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA) # transparency ???
 glHint(GL_LINE_SMOOTH_HINT, GL_DONT_CARE)
-glClearColor(0,0,0,0)            # background color
+glEnable(GL_BLEND)                                  # transparency
+glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)   # transparency
+glClearColor(0,0,0,0)                               # background color
 
 @canvas.event
 def on_key_press(symbol, modifiers):
     if symbol == pyglet.window.key.ESCAPE:
         pyglet.app.exit()
-    elif symbol == pyglet.window.key.I:   # interraction
+    elif symbol == pyglet.window.key.I:             # interraction
         toggle()
 
 @canvas.event
@@ -36,10 +41,8 @@ def on_draw():
     canvas.clear()
     batch.draw()
 
-
 #------------------------------- DRAWING STUFF --------------------------------
 class Sketch(pyglet.graphics.Group):
-
     def __init__(self,pos=ORIGIN):
         super(Sketch, self).__init__()
         self.pos=pos
@@ -47,6 +50,8 @@ class Sketch(pyglet.graphics.Group):
     def set_state(self):
         glPushMatrix()
         glTranslatef(self.pos[0], self.pos[1], 0)
+        # arg1: degrees to rotate, three argument : x, y, z axis to rotate
+        glRotatef(self.pos[2], 0, 0, 1)
 
     def unset_state(self):
         glPopMatrix()
@@ -54,57 +59,48 @@ class Sketch(pyglet.graphics.Group):
     def clone(self):
         pass
 
-
 #------------------------------- ACTION STUFF ---------------------------------
 def update(dt, *args, **kwargs):
     # yelds sine and cosine values from an uniform circular motion
     global alpha
     alpha += dt * OMEGA
     alpha = alpha % (TWOPI)  # stay within [0,2*Pi]
-    action1(dt, math.cos(alpha), math.sin(alpha))
-    action2(dt, math.cos(alpha), math.sin(alpha))
+    rotate_wheel(alpha)
     toggle(dt, math.cos(alpha), math.sin(alpha))
 
-
-def action1(t,c,s):
-        print "+ time, cos, sin = ", t,c,s
-
-def action2(t,c,s):
-        pass
+def rotate_wheel(alpha):
+        wheel.pos[2] = alpha*RAD2DEG
 
 def toggle(*args,**kwargs):
     #red_rec.vertices += 10
     # the color attribute of the vertex can be updated:
-    blu_rec.colors[:3] = [int(200*args[1]), 0, 0, 255]
+    red_rec.colors[:3] = [int(200*args[1]), 0, 0, 255]
     red_rec.vertices[:2] = [int(200*args[1]),int(200*args[1])]
 
 # red rectangle ---------------------------------------------------------------
-g1= Sketch()
-red_rec=batch.add(
-        6,
+wheel= Sketch()
+red_rec=batch.add(6,
         pyglet.gl.GL_TRIANGLES,
-        g1,
+        wheel,
         ('v2f/static',(0,0,0,100,100,100,100,100,100,0,0,0)),
-        ('c4B/static', (255,0,0,230)*6)
-        )
-print "+ vertices = ", red_rec.vertices
-print "+ vertices.count = ", red_rec.vertices.count
+        ('c4B/static', (255,0,0,230)*6))
 
-# blue triangle ---------------------------------------------------------------
-
-blu_rec=batch.add(
-        3,
-        pyglet.gl.GL_TRIANGLES,
-        g1,
-        'v2f/static',
+# dot -------------------------------------------------------------------------
+pt=batch.add(5,
+        pyglet.gl.GL_LINE_STRIP,
+        wheel,
+        'v2i/static',
         'c4B/static')
+pt.colors = (255,0,0,255)*5
+pt.vertices = [y for x in zip(
+    [x+RADIUS for x in BLIP[0::2]],
+    [y for y in BLIP[1::2]])
+    for y in x]
 
-vtx2=[100,140,100,0,200,130]
-clr2=(0,10,205,250)
-blu_rec.vertices=[100,140,100,0,200,130]
-blu_rec.colors = (0,0,255,230)*3
-
-
+#flatten a lists of lists
+#flattened_list = [y for x in list_of_lists for y in x]
+# from : http://stackoverflow.com/questions/3471999/how-do-i-merge-two-lists-into-a-single-list
+# [j for i in zip(a,b) for j in i]
 #----------------------------------- GO ---------------------------------------
 if __name__ == "__main__":
     pyglet.clock.schedule_interval(update, 1.0/60)
