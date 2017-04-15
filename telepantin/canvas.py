@@ -16,7 +16,7 @@ PI, TWOPI = math.pi, math.pi * 2
 RAD2DEG = 360 / TWOPI
 OMEGA = TWOPI * 0.5            # angular velocity (rev/s) : TWOPI/2 = 1/2 rev/s
 alpha = 0.0                    # start angle
-BLIP = [-3, 0, 3, 0, 0, 0, 0, 3, 0, -3]
+BLIP = [-3, 0, 3, 0, 0, 0, 0, 3, 0, -3]  # list of vtx for a point (blip style)
 #--------------------------------- PYGLET STUFF -------------------------------
 batch = pyglet.graphics.Batch()
 canvas = pyglet.window.Window(fullscreen=True)
@@ -79,28 +79,16 @@ def toggle(*args,**kwargs):
 
 # red rectangle ---------------------------------------------------------------
 wheel= Sketch()
-red_rec=batch.add(6,
-        pyglet.gl.GL_TRIANGLES,
-        wheel,
-        ('v2f/static',(0,0,0,100,100,100,100,100,100,0,0,0)),
-        ('c4B/static', (255,0,0,230)*6))
+red_rec=batch.add(6, pyglet.gl.GL_TRIANGLES, wheel, 'v2f/static', 'c4B/static')
+red_rec.colors = (255,0,0,230)*6
+red_rec.vertices = (0,0,0,100,100,100,100,100,100,0,0,0)
 
 # dot -------------------------------------------------------------------------
-pt=batch.add(5,
-        pyglet.gl.GL_LINE_STRIP,
-        wheel,
-        'v2i/static',
-        'c4B/static')
+pt=batch.add(5, pyglet.gl.GL_LINE_STRIP, wheel, 'v2i/static', 'c4B/static')
 pt.colors = (255,0,0,255)*5
-pt.vertices = [y for x in zip(
-    [x+RADIUS for x in BLIP[0::2]],
-    [y for y in BLIP[1::2]])
-    for y in x]
+pt.vertices = reduce(tuple.__add__, zip( [x+RADIUS for x in BLIP[0::2]],
+    [y for y in BLIP[1::2]]))
 
-#flatten a lists of lists
-#flattened_list = [y for x in list_of_lists for y in x]
-# from : http://stackoverflow.com/questions/3471999/how-do-i-merge-two-lists-into-a-single-list
-# [j for i in zip(a,b) for j in i]
 #----------------------------------- GO ---------------------------------------
 if __name__ == "__main__":
     pyglet.clock.schedule_interval(update, 1.0/60)
