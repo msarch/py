@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" [
+	<!ENTITY st0 "fill:none;stroke:#231F20;stroke-miterlimit:10;">
+]>
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="85.04px" height="85.04px" viewBox="0 0 85.04 85.04" style="enable-background:new 0 0 85.04 85.04;" xml:space="preserve"
+	>
+<g id="weight">
+	<line style="&st0;" x1="9.525" y1="19.802" x2="1.255" y2="19.802"/>
+	<line style="&st0;" x1="1.255" y1="19.802" x2="0.222" y2="28.071"/>
+	<line style="&st0;" x1="0.222" y1="28.071" x2="10.559" y2="27.038"/>
+	<line style="&st0;" x1="12.884" y1="26.004" x2="12.884" y2="19.026"/>
+	<line style="&st0;" x1="12.884" y1="19.026" x2="24.771" y2="17.734"/>
+	<line style="&st0;" x1="24.771" y1="17.734" x2="24.771" y2="21.353"/>
+	<line style="&st0;" x1="24.771" y1="21.353" x2="13.143" y2="22.644"/>
+	<line style="&st0;" x1="13.143" y1="22.644" x2="25.547" y2="25.487"/>
+</g>
+<g id="foot">
+	<line style="&st0;" x1="14.435" y1="70.452" x2="29.423" y2="15.667"/>
+	<line style="&st0;" x1="29.423" y1="15.667" x2="35.884" y2="70.193"/>
+	<line style="&st0;" x1="21.929" y1="42.026" x2="32.266" y2="42.542"/>
+	<line style="&st0;" x1="35.884" y1="42.801" x2="35.367" y2="33.757"/>
+</g>
+<g id="arm">
+	<line style="&st0;" x1="35.367" y1="33.757" x2="39.243" y2="43.06"/>
+	<line style="&st0;" x1="39.243" y1="43.06" x2="40.276" y2="31.948"/>
+	<line style="&st0;" x1="43.895" y1="31.172" x2="43.378" y2="39.184"/>
+	<line style="&st0;" x1="43.378" y1="39.184" x2="82.141" y2="31.172"/>
+	<line style="&st0;" x1="43.895" y1="31.948" x2="64.052" y2="28.071"/>
+	<line style="&st0;" x1="44.153" y1="36.082" x2="73.096" y2="29.88"/>
+</g>
+<g id="load">
+	<line style="&st0;" x1="73.097" y1="46.677" x2="72.838" y2="53.913"/>
+	<line style="&st0;" x1="72.838" y1="53.913" x2="75.681" y2="53.654"/>
+	<ellipse style="&st0;" cx="76.198" cy="50.037" rx="1.55" ry="3.359"/>
+	<line style="&st0;" x1="79.298" y1="46.226" x2="78.07" y2="52.75"/>
+	<line style="&st0;" x1="79.233" y1="46.483" x2="80.396" y2="46.226"/>
+	<line style="&st0;" x1="80.203" y1="46.226" x2="82.077" y2="52.815"/>
+	<line style="&st0;" x1="78.846" y1="49.843" x2="81.365" y2="49.714"/>
+	<line style="&st0;" x1="82.593" y1="45.838" x2="83.498" y2="53.138"/>
+	<path style="&st0;" d="M83.498,53.073c2.907-2.455,2.843-5.879-0.646-6.978"/>
+</g>
+</svg>

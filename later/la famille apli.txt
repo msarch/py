@@ -1,0 +1,11 @@
+La famille 'apli'
+
+Une mini appli Java? tourne en boucle comme un cartoon : 5 à 6s comme un teaser.
+Une histoire complète est bouclée dans cette courte durée  (haiku).
+
+L'interraction est possible mais pas obligatoire, seulement si on a envie de "rencontrer l'appli".
+Là, des developpements ou jeux ou dialogues sont possibles
+
+Des applis differentes ont des personnalités différentes, des noms uniques, meme pour chaque copie
+
+Les applis peuvent dialoguer entre elles. Via un site ?

@@ -1,0 +1,74 @@
+
+
+#--------------------------------------
+#             interface
+#--------------------------------------
+
+def splashscreen() :
+# print splash / info
+
+def num_user_input(prompt):
+# valide l'input
+# boucle si non valide
+# annulation possible
+# retourne : user_input (float)
+
+def print_results():
+# print resolution (A1,B1,C1)
+# print resolution (A2,B2,C2)
+
+
+#--------------------------------------
+#               classes
+#--------------------------------------
+
+### une classe Point ?
+
+un point = un vecteur = [a,b]
+un n-polygone = n vecteurs,
+un 
+un triangle = 3-poly
+# une classe triangle par ses segments ?
+# une classe triangle par ses angles
+#   fonction al-kashi
+### une classe Vecteur ?
+
+### une classe Ligne=point,vecteur ?
+
+
+#--------------------------------------
+#       functions & classes
+#--------------------------------------
+
+
+
+def al_kashi (l,m,n):
+    Calcule les 3 angles : alpha, beta, gamma
+    d'un triangle a partir des trois longueurs : L,M,N
+
+def surface
+     l'aire, de la formule de Héron
+        --> entrée = 4? 3? points ou vecteurs?
+        <-- retour = surface
+
+Fonction : export lignes vers dxf
+        --> entrée = une liste de paires de points, nom de fichier
+        : ouvre le fichier
+        : ecrit les lignes
+        : save
+        : print 'confirmation'
+
+
+Fonction : radial to cartesien
+    main :
+    entree points
+calculs :
+        --> angles
+        --> liste de vecteurs?
+
+
+
+#--------------------------------------
+# MAIN
+#--------------------------------------
+

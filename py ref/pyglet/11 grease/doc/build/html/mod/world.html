@@ -1,0 +1,434 @@
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>grease.world – Entity Environment &mdash; Grease v0.3 documentation</title>
+    <link rel="stylesheet" href="../_static/sphinxdoc.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    '../',
+        VERSION:     '0.3',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <link rel="top" title="Grease v0.3 documentation" href="../index.html" />
+    <link rel="next" title="Changes in Grease" href="../changes.html" />
+    <link rel="prev" title="grease.renderer – World Presentation" href="renderer.html" />
+        <link rel="stylesheet" href="../_static/grease.css" type="text/css" />
+
+  </head>
+  <body>
+<div style="background-color: white; text-align: left; padding: 10px 10px 15px 15px">
+<img src="../_static/grease.png" alt="Grease logo" />
+</div>
+
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../changes.html" title="Changes in Grease"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="renderer.html" title="grease.renderer – World Presentation"
+             accesskey="P">previous</a> |</li>
+        <li><a href="../index.html">Grease v0.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="renderer.html"
+                        title="previous chapter"><tt class="docutils literal docutils literal docutils literal"><span class="pre">grease.renderer</span></tt> &#8211; World Presentation</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="../changes.html"
+                        title="next chapter">Changes in Grease</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="../_sources/mod/world.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" size="18" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="module-grease.world">
+<span id="grease-world-entity-environment"></span><h1><a class="reference internal" href="#module-grease.world" title="grease.world: Container and environment for entities, component, systems and renderers"><tt class="xref py py-mod docutils literal"><span class="pre">grease.world</span></tt></a> &#8211; Entity Environment<a class="headerlink" href="#module-grease.world" title="Permalink to this headline">¶</a></h1>
+<p>Worlds are environments described by a configuration of components, systems and 
+renderers. These parts describe the data, behavioral and presentation aspects
+of the world respectively.</p>
+<p>The world environment is the context within which entities exist. A typical
+application consists of one or more worlds containing entities that evolve
+over time and react to internal and external interaction.</p>
+<p>See <a class="reference internal" href="../tutorial/tutorial1.html#tut-world-example"><em>an example of world configuration in the tutorial</em></a>.</p>
+<dl class="class">
+<dt id="grease.world.World">
+<em class="property">class </em><tt class="descclassname">grease.world.</tt><tt class="descname">World</tt><big>(</big><em>step_rate=60</em>, <em>master_clock=pyglet.clock</em><big>)</big><a class="headerlink" href="#grease.world.World" title="Permalink to this definition">¶</a></dt>
+<dd><p>A coordinated collection of components, systems and entities</p>
+<p>A world is also a mode that may be pushed onto a 
+<a class="reference internal" href="mode.html#grease.mode.Manager" title="grease.mode.Manager"><tt class="xref py py-class docutils literal"><span class="pre">grease.mode.Manager</span></tt></a></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>step_rate</strong> &#8211; The rate of <a class="reference internal" href="#grease.world.World.step" title="grease.world.World.step"><tt class="xref py py-meth docutils literal"><span class="pre">step()</span></tt></a> calls per second.</li>
+<li><strong>master_clock</strong> &#8211; The <tt class="xref py py-class docutils literal"><span class="pre">pyglet.clock.Clock</span></tt> interface used
+as the master clock that ticks the world&#8217;s clock. This 
+defaults to the main pyglet clock.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="grease.world.World.__getitem__">
+<tt class="descname">__getitem__</tt><big>(</big><em>entity_class</em><big>)</big><a class="headerlink" href="#grease.world.World.__getitem__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return an <a class="reference internal" href="#grease.world.EntityExtent" title="grease.world.EntityExtent"><tt class="xref py py-class docutils literal"><span class="pre">EntityExtent</span></tt></a> for the given entity class. This extent
+can be used to access the set of entities of that class in the world
+or to query these entities via their components.</p>
+<p>Examples:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">world</span><span class="p">[</span><span class="n">MyEntity</span><span class="p">]</span>
+<span class="n">world</span><span class="p">[</span><span class="o">...</span><span class="p">]</span>
+</pre></div>
+</div>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>entity_class</strong> &#8211; <p>The entity class for the extent.</p>
+<p>May also be a tuple of entity classes, in which case
+the extent returned contains union of all entities of the classes
+in the world.</p>
+<p>May also be the special value ellipsis (<tt class="docutils literal"><span class="pre">...</span></tt>), which
+returns an extent containing all entities in the world.  This allows
+you to conveniently query all entities using <tt class="docutils literal"><span class="pre">world[...]</span></tt>.</p>
+</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.World.activate">
+<tt class="descname">activate</tt><big>(</big><em>manager</em><big>)</big><a class="headerlink" href="#grease.world.World.activate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Activate the world/mode for the given manager, if the world is already active, 
+do nothing. This method is typically not used directly, it is called
+automatically by the mode manager when the world becomes active.</p>
+<p>The systems of the world are pushed onto <cite>manager.event_dispatcher</cite>
+so they can receive system events.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>manager</strong> &#8211; <tt class="xref py py-class docutils literal"><span class="pre">mode.BaseManager</span></tt> instance</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.World.configure">
+<tt class="descname">configure</tt><big>(</big><big>)</big><a class="headerlink" href="#grease.world.World.configure" title="Permalink to this definition">¶</a></dt>
+<dd><p>Hook to configure the world after construction. This method
+is called immediately after the world is initialized. Override
+in a subclass to configure the world&#8217;s components, systems,
+and renderers.</p>
+<p>The default implementation does nothing.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.World.deactivate">
+<tt class="descname">deactivate</tt><big>(</big><em>manager</em><big>)</big><a class="headerlink" href="#grease.world.World.deactivate" title="Permalink to this definition">¶</a></dt>
+<dd><p>Deactivate the world/mode, if the world is not active, do nothing.
+This method is typically not used directly, it is called
+automatically by the mode manager when the world becomes active.</p>
+<p>Removes the system handlers from the <cite>manager.event_dispatcher</cite></p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>manager</strong> &#8211; <tt class="xref py py-class docutils literal"><span class="pre">mode.BaseManager</span></tt> instance</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.World.on_draw">
+<tt class="descname">on_draw</tt><big>(</big><em>gl=&lt;module 'pyglet.gl' from '/Library/Frameworks/Python.framework/Versions/2.6/lib/python2.6/site-packages/pyglet/gl/__init__.pyc'&gt;</em><big>)</big><a class="headerlink" href="#grease.world.World.on_draw" title="Permalink to this definition">¶</a></dt>
+<dd><p>Clear the current OpenGL context, reset the model/view matrix and
+invoke the <cite>draw()</cite> methods of the renderers in order</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.World.step">
+<tt class="descname">step</tt><big>(</big><em>dt</em><big>)</big><a class="headerlink" href="#grease.world.World.step" title="Permalink to this definition">¶</a></dt>
+<dd><p>Execute a time step for the world. Updates the world <cite>time</cite>
+and invokes the world&#8217;s systems.</p>
+<p>Note that the specified time delta will be pinned to 10x the
+configured step rate. For example if the step rate is 60,
+then dt will be pinned at a maximum of 0.1666. This avoids 
+pathological behavior when the time between steps goes
+much longer than expected.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dt</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; The time delta since the last time step</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.World.tick">
+<tt class="descname">tick</tt><big>(</big><em>dt</em><big>)</big><a class="headerlink" href="#grease.world.World.tick" title="Permalink to this definition">¶</a></dt>
+<dd><p>Tick the mode&#8217;s clock, but only if the world is currently running</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>dt</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#float" title="(in Python v2.7)"><em>float</em></a>) &#8211; The time delta since the last tick</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.clock">
+<tt class="descname">clock</tt><a class="headerlink" href="#grease.world.World.clock" title="Permalink to this definition">¶</a></dt>
+<dd><p><tt class="xref py py-class docutils literal"><span class="pre">pyglet.clock</span></tt> interface for use by constituents
+of the world for scheduling</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.components">
+<tt class="descname">components</tt><a class="headerlink" href="#grease.world.World.components" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#grease.world.ComponentParts" title="grease.world.ComponentParts"><tt class="xref py py-class docutils literal"><span class="pre">ComponentParts</span></tt></a> object containing all world components.
+<a class="reference internal" href="component.html#grease.component.Component" title="grease.component.Component"><tt class="xref py py-class docutils literal"><span class="pre">grease.component.Component</span></tt></a> objects define and contain all entity data</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.entities">
+<tt class="descname">entities</tt><a class="headerlink" href="#grease.world.World.entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Set of all entities that exist in the world</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.renderers">
+<tt class="descname">renderers</tt><a class="headerlink" href="#grease.world.World.renderers" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#grease.world.Parts" title="grease.world.Parts"><tt class="xref py py-class docutils literal"><span class="pre">Parts</span></tt></a> object containing all world renderers.
+<a class="reference internal" href="grease.html#grease.Renderer" title="grease.Renderer"><tt class="xref py py-class docutils literal"><span class="pre">grease.Renderer</span></tt></a> objects define world presentation</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.running">
+<tt class="descname">running</tt><a class="headerlink" href="#grease.world.World.running" title="Permalink to this definition">¶</a></dt>
+<dd><p>Flag to indicate that the world clock is running, advancing time
+and stepping the world. Set running to False to pause the world.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.systems">
+<tt class="descname">systems</tt><a class="headerlink" href="#grease.world.World.systems" title="Permalink to this definition">¶</a></dt>
+<dd><p><a class="reference internal" href="#grease.world.Parts" title="grease.world.Parts"><tt class="xref py py-class docutils literal"><span class="pre">Parts</span></tt></a> object containing all world systems.
+<a class="reference internal" href="grease.html#grease.System" title="grease.System"><tt class="xref py py-class docutils literal"><span class="pre">grease.System</span></tt></a> objects define world and entity behavior</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.World.time">
+<tt class="descname">time</tt><a class="headerlink" href="#grease.world.World.time" title="Permalink to this definition">¶</a></dt>
+<dd><p>Current clock time of the world, starts at 0 when the world
+is instantiated</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="grease.world.Parts">
+<em class="property">class </em><tt class="descclassname">grease.world.</tt><tt class="descname">Parts</tt><big>(</big><em>world</em><big>)</big><a class="headerlink" href="#grease.world.Parts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps world parts to attributes. The parts are kept in the
+order they are set. Parts may also be inserted out of order.</p>
+<p>Used for:</p>
+<ul class="simple">
+<li><a class="reference internal" href="#grease.world.World.systems" title="grease.world.World.systems"><tt class="xref py py-attr docutils literal"><span class="pre">World.systems</span></tt></a></li>
+<li><a class="reference internal" href="#grease.world.World.renderers" title="grease.world.World.renderers"><tt class="xref py py-attr docutils literal"><span class="pre">World.renderers</span></tt></a></li>
+</ul>
+<dl class="method">
+<dt id="grease.world.Parts.insert">
+<tt class="descname">insert</tt><big>(</big><em>name</em>, <em>part</em>, <em>before=None</em>, <em>index=None</em><big>)</big><a class="headerlink" href="#grease.world.Parts.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a part with a particular name at a particular index.
+If a part by that name already exists, it is replaced.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The name of the part.</li>
+<li><strong>part</strong> &#8211; The component, system, or renderer part to insert</li>
+<li><strong>before</strong> &#8211; A part object or name. If specified, the part is
+inserted before the specified part in order.</li>
+<li><strong>index</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; If specified, the part is inserted in the position
+specified. You cannot specify both before and index.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="grease.world.ComponentParts">
+<em class="property">class </em><tt class="descclassname">grease.world.</tt><tt class="descname">ComponentParts</tt><big>(</big><em>world</em><big>)</big><a class="headerlink" href="#grease.world.ComponentParts" title="Permalink to this definition">¶</a></dt>
+<dd><p>Maps world components to attributes. The components are kept in the
+order they are set. Components may also be inserted out of order.</p>
+<p>Used for: <a class="reference internal" href="#grease.world.World.components" title="grease.world.World.components"><tt class="xref py py-attr docutils literal"><span class="pre">World.components</span></tt></a></p>
+<dl class="method">
+<dt id="grease.world.ComponentParts.insert">
+<tt class="descname">insert</tt><big>(</big><em>name</em>, <em>part</em>, <em>before=None</em>, <em>index=None</em><big>)</big><a class="headerlink" href="#grease.world.ComponentParts.insert" title="Permalink to this definition">¶</a></dt>
+<dd><p>Add a part with a particular name at a particular index.
+If a part by that name already exists, it is replaced.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>name</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#str" title="(in Python v2.7)"><em>str</em></a>) &#8211; The name of the part.</li>
+<li><strong>part</strong> &#8211; The component, system, or renderer part to insert</li>
+<li><strong>before</strong> &#8211; A part object or name. If specified, the part is
+inserted before the specified part in order.</li>
+<li><strong>index</strong> (<a class="reference external" href="http://docs.python.org/library/functions.html#int" title="(in Python v2.7)"><em>int</em></a>) &#8211; If specified, the part is inserted in the position
+specified. You cannot specify both before and index.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="grease.world.ComponentParts.join">
+<tt class="descname">join</tt><big>(</big><em>*component_names</em><big>)</big><a class="headerlink" href="#grease.world.ComponentParts.join" title="Permalink to this definition">¶</a></dt>
+<dd><p>Join and iterate entity data from multiple components together.</p>
+<p>For each entity in all of the components named, yield a tuple containing
+the entity data from each component specified.</p>
+<p>This is useful in systems that pull data from multiple components.</p>
+<p>Typical Usage:</p>
+<div class="highlight-python"><pre>for position, movement in world.components.join("position", "movement"):
+        # Do something with each entity's position and movement data</pre>
+</div>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="grease.world.EntityExtent">
+<em class="property">class </em><tt class="descclassname">grease.world.</tt><tt class="descname">EntityExtent</tt><big>(</big><em>world</em>, <em>entities</em><big>)</big><a class="headerlink" href="#grease.world.EntityExtent" title="Permalink to this definition">¶</a></dt>
+<dd><p>Encapsulates a set of entities queriable by component. Extents
+are accessed by using an entity class as a key on the <a class="reference internal" href="#grease.world.World" title="grease.world.World"><tt class="xref py py-class docutils literal"><span class="pre">World</span></tt></a>:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">extent</span> <span class="o">=</span> <span class="n">world</span><span class="p">[</span><span class="n">MyEntity</span><span class="p">]</span>
+</pre></div>
+</div>
+<dl class="method">
+<dt id="grease.world.EntityExtent.__getattr__">
+<tt class="descname">__getattr__</tt><big>(</big><em>name</em><big>)</big><a class="headerlink" href="#grease.world.EntityExtent.__getattr__" title="Permalink to this definition">¶</a></dt>
+<dd><p>Return a queriable <tt class="xref py py-class docutils literal"><span class="pre">ComponentEntitySet</span></tt> for the named component</p>
+<p>Example:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">world</span><span class="p">[</span><span class="n">MyEntity</span><span class="p">]</span><span class="o">.</span><span class="n">movement</span><span class="o">.</span><span class="n">velocity</span> <span class="o">&gt;</span> <span class="p">(</span><span class="mf">0</span><span class="p">,</span> <span class="mf">0</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Returns a set of entities where the value of the <tt class="xref py py-attr docutils literal"><span class="pre">velocity</span></tt> field
+of the <tt class="xref py py-attr docutils literal"><span class="pre">movement</span></tt> component is greater than <tt class="docutils literal"><span class="pre">(0,</span> <span class="pre">0)</span></tt>.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="grease.world.EntityExtent.entities">
+<tt class="descname">entities</tt><a class="headerlink" href="#grease.world.EntityExtent.entities" title="Permalink to this definition">¶</a></dt>
+<dd><p>The full set of entities in the extent</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="../changes.html" title="Changes in Grease"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="renderer.html" title="grease.renderer – World Presentation"
+             >previous</a> |</li>
+        <li><a href="../index.html">Grease v0.3 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2010, Casey Duncan.
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.0.5.
+    </div>
+  </body>
+</html>

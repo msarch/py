@@ -1,0 +1,9 @@
+o use GL_TRIANGLES (indexed arrays of)
+o toggle fullscreen button
+o describe indexed vertex arrays
+o describe how they are not intended for the apparent use
+    of eliminating redundancy in the vertex arrays
+    (since surface normals, etc defeat that)
+    but are actually as a way to animate objects by substituting one
+    part of a vertex array for another
+

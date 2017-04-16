@@ -1,0 +1,9 @@
+print 'reading prefs...'
+self.size = 800,600
+self.pos = 100,100 
+self.fullScreen = 0 
+self.frameRate = 15 
+# others # 'others' keyword diferenciates setup prefs from others prefs
+self.circlesize = 300
+self.bgColor = 0.5, 0, 0.2
+

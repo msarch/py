@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="77px" height="27px" xmlns="http://www.w3.org/2000/svg" version="1.1">
+    <title>Slice 1</title>
+    <description>Created with Sketch (http://www.bohemiancoding.com/sketch)</description>
+    <g fill="#ff2a2a" id="Page 1">
+        <g stroke="#ff2a2a" stroke-width="1" fill="#ff2a2a" id="Shape"></g>
+        <path 
+        style="fill:#ff2a2a;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+        d="M 10,10 L 74,1 L 74,26 L 1,26 L 1,26 L 1,1 z"         
+        id="ape"/>
+        <path
+       style="fill:#ff2a2a;fill-rule:evenodd;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="M 150,10 L 170,200 L 10,160 L 150,10 z"
+       id="path2442"/>
+    </g>
+</svg>

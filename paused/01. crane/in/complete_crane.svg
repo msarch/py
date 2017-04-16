@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Generator: Adobe Illustrator 15.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+	 width="1133.86px" height="1133.86px" viewBox="0 0 1133.86 1133.86" enable-background="new 0 0 1133.86 1133.86"
+	 xml:space="preserve">
+<g id="crane">
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="295.333" y1="766" x2="334" y2="624.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="334" y1="624.667" x2="350.667" y2="765.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="314.667" y1="692.667" x2="341.333" y2="694"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="282.667" y1="635.334" x2="261.333" y2="635.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="261.333" y1="635.334" x2="258.667" y2="656.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="258.667" y1="656.667" x2="285.333" y2="654"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="291.333" y1="651.334" x2="291.333" y2="633.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="291.333" y1="633.334" x2="322" y2="630"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="322" y1="630" x2="322" y2="639.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="322" y1="639.334" x2="292" y2="642.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="292" y1="642.667" x2="324" y2="650"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="350.667" y1="694.667" x2="349.333" y2="671.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="349.333" y1="671.334" x2="359.333" y2="695.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="359.333" y1="695.334" x2="362" y2="666.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="371.333" y1="664.667" x2="370" y2="685.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="370" y1="685.334" x2="470" y2="664.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="371.333" y1="666.667" x2="423.333" y2="656.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="372" y1="677.334" x2="446.667" y2="661.334"/>
+</g>
+<g id="load">
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="454.668" y1="704.666" x2="454.001" y2="723.333"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="454.001" y1="723.333" x2="461.334" y2="722.666"/>
+	<ellipse fill="none" stroke="#000000" stroke-miterlimit="10" cx="462.668" cy="713.333" rx="4" ry="8.667"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="470.667" y1="703.501" x2="467.5" y2="720.334"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="470.5" y1="704.167" x2="473.5" y2="703.501"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="473" y1="703.501" x2="477.833" y2="720.501"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="469.5" y1="712.834" x2="476" y2="712.501"/>
+	<line fill="none" stroke="#000000" stroke-miterlimit="10" x1="479.167" y1="702.501" x2="481.5" y2="721.334"/>
+	<path fill="none" stroke="#000000" stroke-miterlimit="10" d="M481.5,721.167c7.5-6.333,7.333-15.166-1.667-18"/>
+</g>
+<line id="chain" fill="none" stroke="#000000" stroke-miterlimit="10" x1="470" y1="664.667" x2="470" y2="700"/>
+</svg>

@@ -1,0 +1,177 @@
+
+---
+# Computational Geometry : 2D Affine Transformation matrixes
+*******************************************************************************
+
+Ref:
+---
+http://en.wikipedia.org/wiki/Transformation_matrix
+
+- Affine transformations preserve collinearity and relative distancing :
+	- points on a line will remain in a line after an affine transformation
+	- parallel lines remain parallel
+	- relative spacing or distancing,
+        (may scale, but will always maintain at a consistent ratio.)
+- Affine transformations allow for repositioning, scaling, skewing and rotation.
+- Things they cannot do include tapering or distorting with perspective.
+- Toutes les transformations affines peuvent se calculer avec des matrices.
+
+
+Normalement pour un point 2d ‡ deux coordonnÈes (x,y):
+	- L'homothÈtie et la rotation se calculent par multiplication de matrices
+		[x']   [a b]   [x]
+		[y'] = [c d] * [y]
+	- La translation se calcule par addition de matrices
+		[x']   [Tx]   [x]
+		[y'] = [Ty] + [y]
+alors que pour un point 3d toutes les operations affines sont de la forme :
+		[x']   [a b c]   [x]
+		[y'] = [d e f] * [y]
+		[z']   [g h i]   [z]
+
+A trois coordonnÈes, avec des matrices qui sont toujours carrÈes,
+on peut composer plusieur transformations en multipliant les matrices
+correspondant ‡ chaque opÈration DANS UN ORDRE PRECIS.
+
+Si le point 2D devient artificielement un vecteur ‡ 3 coordonnÈes (x,y,z)
+(par dÈfaut on fixe z=1), la matrice gÈnÈrale des transformations 2d devient :
+		[x']   [a b m]   [x]   [ax + by + mz]   [ax + by + mz]
+		[y'] = [c d n] * [y] = [cx + dy + nz] = [cx + dy + nz]
+		[z']   [0 0 1]   [z]   [0x + 0y + 1z]	   [     1      ]
+
+Nous quittons maintenant le domaine de la gÈomÈtrie euclidienne pour
+entrer dans celui de la gÈomÈtrie projective, outil gÈomÈtrique trËs puissant.
+
+Matrice type de mise ‡ l'Èchelle
+--------------------------------
+		[Sx  0  0]
+		[ 0 Sy  0]
+		[ 0  0  1]
+Matrice de rotation
+------------------
+		[ cosA -sinA    0]
+		[ sinA  cosA    0]
+		[   0     0     1]
+Matrice de Translation
+----------------------
+		[ 1  0  dx]
+		[ 0  1  dy]
+		[ 0  0   1]
+
+RÈflexion d'un point par rapport ‡ un axe (transformation miroir)
+-----------------------------------------------------------------
+- Par rapport ‡ l'axe des y :
+		[-1  0  0]
+		[ 0  1  0]
+		[ 0  0  1]
+
+- Par rapport ‡ l'axe des x :
+		[ 1  0  0]
+		[ 0 -1  0]
+		[ 0  0  1]
+
+- Par rapport ‡ l'origine :
+		[-1  0  0]
+		[ 0 -1  0]
+		[ 0  0  1]
+
+
+Composition is accomplished by matrix multiplication.
+If A and B are the matrices of two linear transformations,
+then the effect of applying first A and then B to a vector x is given by:
+	B(Ax) = (BA)x
+
+Rotation autour d'un point arbitraire
+-------------------------------------
+- La rotation autour d'un point arbitraire s'exprime comme une combinaison de:
+    - Une translation du point arbitraire vers l'origine
+	- Une rotation autour de l'origine
+	- Une translation de l'origine vers le point arbitraire
+
+HomothÈtie par rapport ‡ un point arbitraire
+--------------------------------------------
+L'homothÈtie (ou changement d'Èchelle) par rapport ‡ un point arbitraire
+se dÈcompose :	- Translation du point arbitraire vers l'origine
+	- HomothÈtie par rapport ‡ l'origine
+	- Translation inverse de l'origine vers le point arbitraire
+
+multiplication de matrices carrÈes 3x3:
+--------------------------------------
+		[a b c]   [A B C]   [aA+bD+cG  aB+bE+cH  aC+bF+cI]
+		[d e f] * [D E F] = [dA+eD+fG  dB+eE+fH  dC+eF+fI]
+		[g h i]   [G H I]   [gA+hD+iG  gB+hE+iH  gC+hF+iI]
+
+
+The identity matrix
+-------------------
+An important matrix is the identity matrix:
+
+	  | 1 0 0 |
+	I=| 0 1 0 |
+	  | 0 0 1 |
+It transforms a point to itself: P1=P2=I∑P1
+
+This can be interpreted as
+
+- translation with (0,0)
+- rotation with 0 degrees, since cos (0)=1 and sin (0) =0
+- scaling with (1,1)
+
+
+In python :
+-----------
+Nested lists are often used to represent matrices. For example, the matrix:
+		[a b c]
+		[d e f]
+		[g h i]
+might be represented as a list with three elements, where each element
+is a row of the matrix.
+>>> matrix = [[a, b, c], [d, e, f], [g, h, i]]
+
+The identity matrix would be :
+>>> matrix = [[1, 0, c], [0, 1, 0], [0, 0, 1]]
+
+In OpenGL
+---------
+To understand how OpenGL's transformations work, we have to take a closer
+look at the concept: current transformation matrix. It means that OpenGL
+always multiply coordinate values in drawing commands with the current matrix,
+before they are processed further and eventually, after more transformations,
+are rendered onto the screen. The basic drawing command in OpenGL,
+for plane and space respectively:
+
+  glVertex2(x,y)
+  glVertex3(x,y,z)
+
+The position vector which are described by the parameters is multiplied
+with the current transformation matrix, before it is processed further on
+its way to the screen. glVertex is in principle the only basic drawing
+primitive in OpenGL.
+
+The identity matrix doesn't do anything with the coordinates.
+In OpenGL there is ALWAYS a current model matrix that all of the
+points are multiplied with. To avoid any unwanted transformation,
+the identity matrix must be set to be the current transformation matrix with :
+  glLoadIdentity()
+
+OpenGL has three basic functions that make up the current transformations
+matrix, in addition to glLoadIdentity():
+
+  glTranslate()
+  glRotate()
+  glScale()
+
+When we call one of these the current transformations matrix is affected
+by the new transformation matrix that is multiplied with it.
+
+The example with rotation around another point than the origin, can be
+realized like this in OpenGL:
+	  Geometric operation	 / OpenGL-call	 /  Current matrix M
+	- Reset the transformations	 / glLoadIdentity() / M=I
+	- Translate origin to a	 /  gltranslate(1,1,0) / M =I∑T1
+	- Rotate /  glRotate(90,0,0,1)	/ M= I∑T1∑R
+	- Translate origin back	 / gltranslate(-1,-1,0)  / M= I∑T1∑R∑T2
+	-
+We see that the rotation function has parameters that both gives the
+rotation and the rotation axis.
+

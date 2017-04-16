@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Komodo Project File - DO NOT EDIT -->
+<project id="b5437495-3c58-c241-af3d-ebae4d3c0969" kpf_version="5" name="bbw11.komodoproject">
+<file id="02dc5e54-084a-db49-a9b5-bb7ba079dd42" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="blasteroids3.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/examples/blasteroids3.py">
+</file>
+<file id="041b8dc0-6c23-8d47-9b92-eeb4e1d77503" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="world.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/grease/world.py">
+</file>
+<file id="0c2c61e9-c26a-ad4a-af91-3744cb9477c9" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="__init__.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/grease/__init__.py">
+</file>
+<file id="7e09a957-a043-5a47-b185-01bf82abb418" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="vector.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/grease/renderer/vector.py">
+</file>
+<file id="82e62a6f-92d2-e744-9e7c-60270a4de27a" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="base.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/grease/component/base.py">
+</file>
+<file id="99b69dfc-63df-414b-ae64-0e91e6fbd765" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="blasteroids2.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/examples/blasteroids2.py">
+</file>
+<file id="a8af43d4-2f06-3246-b231-fd5dd0c8885b" idref="2d2b00dd-7bab-f042-ab10-af45dd6afd46" name="__init__.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/grease/grease/component/__init__.py">
+</file>
+<file id="842a1830-f326-cf44-9050-c906636863d2" idref="91936475-6457-f94e-8a8b-372856129523" name="context.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/nodeboxGL/00-nodebox source/nodebox/graphics/context.py">
+</file>
+<folder id="2d2b00dd-7bab-f042-ab10-af45dd6afd46" idref="b5437495-3c58-c241-af3d-ebae4d3c0969" name="from grease">
+</folder>
+<file id="7385153a-4905-344b-abe7-aa21d5b663d5" idref="b5437495-3c58-c241-af3d-ebae4d3c0969" name="bbw11_pseudocode.py" url="1.1/bbw11_pseudocode.py">
+</file>
+<folder id="91936475-6457-f94e-8a8b-372856129523" idref="b5437495-3c58-c241-af3d-ebae4d3c0969" name="from nodebox">
+</folder>
+<folder id="bbb3a87e-ca2f-f746-9cdd-bf8571f7b232" idref="b5437495-3c58-c241-af3d-ebae4d3c0969" name="from pyglet">
+</folder>
+<folder id="cb5db935-1d83-9645-b5d8-3682575b4a37" idref="b5437495-3c58-c241-af3d-ebae4d3c0969" name="other refs">
+</folder>
+<file id="cec6481c-d9a6-c847-876a-61aac5c927cd" idref="b5437495-3c58-c241-af3d-ebae4d3c0969" name="grease.pseudocode.py" url="1.1/grease.pseudocode.py">
+</file>
+<file id="ef695027-5bab-de4f-8c89-0eac89b6cfaf" idref="bbb3a87e-ca2f-f746-9cdd-bf8571f7b232" name="pyglet.app.base.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/pyglet/pyglet.app.base.py">
+</file>
+<file id="5c2896c3-91d1-8746-872a-e5152fd8ed39" idref="cb5db935-1d83-9645-b5d8-3682575b4a37" name="flip png.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/pyglet/flip png and anim/flip png.py">
+</file>
+<file id="8ea7bee3-2059-4141-bdbb-c517c9fab99d" idref="cb5db935-1d83-9645-b5d8-3682575b4a37" name="Pong.py" url="file:///Users/MS/Google Drive/5. Dev/py/00 Snippets/pyglet/Pong.py">
+</file>
+</project>

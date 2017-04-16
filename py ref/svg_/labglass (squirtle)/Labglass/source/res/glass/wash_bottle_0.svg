@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg4301"
+   sodipodi:version="0.32"
+   inkscape:version="0.46"
+   sodipodi:docname="wash_bottle_0.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape">
+  <defs
+     id="defs4303">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective4309" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="375"
+     inkscape:cy="520"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="645"
+     inkscape:window-height="723"
+     inkscape:window-x="5"
+     inkscape:window-y="73" />
+  <metadata
+     id="metadata4306">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3650"
+       transform="matrix(0.4605742,0,0,0.4605742,-1799.9949,483.28277)">
+      <path
+         id="path3641"
+         d="M 4488.4375,-649.34375 L 4305.4062,-489 L 4305.4062,519.03125 C 4400.9929,517.978 4555.2213,515.85734 4685.25,515.625 C 4685.2704,515.62504 4685.2921,515.62496 4685.3125,515.625 C 4815.3408,515.85735 4969.5383,517.978 5065.125,519.03125 L 5065.125,-489 L 4882.125,-649.34375 L 4685.3125,-649.34375 L 4685.25,-649.34375 L 4488.4375,-649.34375 z"
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.51360941;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <path
+         style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.51360941;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         d="M 4672.9151,-1013.1003 L 4698.2705,-1013.1003 C 4698.963,-1013.1003 4942.0223,-990.508 4987.1789,-972.5779 C 5037.4966,-952.5985 5110.2659,-878.54354 5111.3564,-877.17004 C 5112.2143,-876.08954 5095.5553,-845.75857 5094.7303,-847.61662 C 5079.3094,-882.34635 4997.1459,-925.66807 4963.3226,-940.83577 C 4929.4993,-956.00357 4703.2705,-986.1242 4703.2705,-985.778 L 4703.2705,446.77434 C 4703.2705,449.54434 4701.0405,452.43298 4698.2705,452.43298 L 4667.8643,452.43298 C 4665.0943,452.43298 4662.8643,450.20298 4662.8643,447.43298 L 4662.8643,-999.0089 C 4662.8643,-1001.7789 4670.1451,-1013.1003 4672.9151,-1013.1003 z"
+         id="path3645"
+         sodipodi:nodetypes="ccssssccccccc" />
+      <rect
+         style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:6.51360893;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate"
+         id="rect3647"
+         width="422.24377"
+         height="88.893425"
+         x="4473.0161"
+         y="-735.32349"
+         rx="10.856013"
+         ry="10.856013" />
+    </g>
+  </g>
+</svg>

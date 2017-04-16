@@ -1,0 +1,41 @@
+Meta:
+	A preliminary animation file
+	
+	Any characters following a # on a line are ignored. Blank-Lines are also ignored.
+	Indentation specifies blocks for non-ignored lines.
+		
+	Meta:
+		Any desired text. Is ignored in parsing.
+		
+	Data:
+		Img1
+			Img1Frame1
+			Img2Frame2
+			...
+			
+		Img2
+			Img2Frame1
+			...
+	
+	
+	Each frame is represented as
+		FrameIndex - XStart YStart Width Height : Lifetime units
+	
+		Regex = "[0-9]+\s+-\s+[0-9]+\s+[0-9]+\s+[0-9]+\s+[0-9]+(\s+:\s+[0-9]+\s+[f, m, s])?"
+
+Data:
+	PlayerShip1.bmp
+		# Row 1
+		0 - 0 0 53 59 : 1s
+		1 - 53 0 53 59 : 1s
+		2 - 106 0 53 59 : 1s
+
+		#	Row 2
+		3 - 0 59 53 59 : 1s
+		4 - 53 59 53 59 : 1s
+		5 - 106 59 53 59 : 1s
+		
+		#	Row 3
+		6 - 0 118 53 59 : 1s
+		7 - 53 118 53 59 : 1s
+		8 - 106 118 53 59 : 1s

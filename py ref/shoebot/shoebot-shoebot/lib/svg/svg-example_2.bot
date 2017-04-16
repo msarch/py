@@ -1,0 +1,18 @@
+from os import getcwd
+
+size(600,600)
+
+svg = ximport("svg")
+
+# The parse() command will return
+# a list of the shapes in the SVG file.
+paths = svg.parse(open(getcwd() + "/circles.svg").read())
+
+for path in paths:
+        # Use copies of the paths
+        # that adhere to the transformations 
+        # (translate, scale, rotate) we defined.
+
+        drawpath(path)
+
+

@@ -1,0 +1,70 @@
+
+#############################################################
+#                           ABOUT                           #
+#############################################################
+
+animation generative, croissance du papyruss
+
+--> USAGE
+	- to create svg files
+	from illustrator : 
+		- save as SVG 1.1 is ok and will include gradients
+
+		
+#############################################################
+#                        ROADBOOK                           #
+#############################################################
+
+
+0 : test des fonctions de base
+-------------------------------
+	- 0.1 imports fichier svg 
+closed		- a. convertir les paths svg vers des paths nodebox
+closed		- b. rendu dans la fenetre Nodebox-GL
+closed		- c. acces au path importé depuis svg
+			( utilisé dans :  Nodebox-ProgressivePath-TT.py,
+			dans : 
+closed	- 0.2 etude des fonctions géométriques : scale / rotation % DT
+-todo-	- 0.3 etude des fonctions cinématiques de base : déplacement sur un path % DT
+-open-	- 0.4 intervenir sur l'object path
+		- checker : 'bezier path insert point' in nodebox.graphics.bezier.py
+				def insert_point(path, t)
+				--> Inserts an extra point at t.
+		- application : cassure tige 		
+		- application : bending "filter" sur les path des feuilles
+	- 0.5 checker la librairie Euclid pour les calculs de symétrie.
+	- 0.6 implanter la transformation 'symetrie'
+		- checker 'reflect' dans :  nodebox.graphics.geometry.py
+			def reflect(x, y, x0, y0, d=1.0, a=180):
+			--> Returns the reflection of a point through origin (x0,y0).
+	- 0.7 vu leur faible complexité, est-il vraiment necessaire d'utiliser des imports SVG ?
+		- stocker et lire des paths natifs nodebox suffirait?
+			
+1 : mise en place de l'animation
+---------------------------------
+	- 1.0 tige + feuilles % DT									
+	- 1.1 croissance des feuilles % DT
+	- 1.2 mouvement feuilles % DT
+	- 1.3 mvmt tige
+	- 1.4 layers de 'profondeur' en niveaux de gris  
+	
+2 : version programmation structurée
+------------------------------------
+	- 2.0 programmation structurée en classes :
+		- tutos :
+			- classes / objets : CHAPITRE 16 MIT open course
+			- etc...	
+
+	- 2.1 :
+		- export de fichiers exploitables
+		- generate svg / pdf 
+
+	- 2.2 viewport version
+		- add a camera path
+	
+3 : 3d version
+--------------
+	- 3.0 passer en 3d
+	
+	
+

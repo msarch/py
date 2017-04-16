@@ -1,0 +1,60 @@
+
+
+
+---
+# Computational Geometry : Detecting Whether Two AABB Boxes Overlap
+*******************************************************************************
+
+from : http://gamemath.com/2011/09/detecting-whether-two-boxes-overlap/
+
+The acronym AABB is often used for axially-aligned bounding box.
+'axially-aligned' means that the sides are parallel to the x- and y-axes;
+
+With very high frequency one answers with the incorrect solution discussed below, work through some examples, and arrive at the correct one.
+
+Most experienced web/GUI programmers have worked with 2D boxes and have encountered the problem, and should know the proper solution. However, they often do not immediately perceive the principle that extends the idea beyond AABB's to arbitrarily-oriented boxes. In summary, it's a problem with a deceptively simple starting point and many branching points depending on the skill of the applicant, which is precisely why it's a great interview question.
+
+Let's say that we have basic 2D vector and bounding box classes such as:
+
+// Simple 2D vector class
+struct Vec2D
+{
+    float x,y;
+};
+
+// 2D axially-aligned bounding box.
+struct Box2D
+{
+    Vec2D min, max;
+};
+
+
+So the goal of the question is a function with a prototype such as
+
+bool BoxesIntersect(const Box2D &a, const Box2D &b);
+When faced with this problem, inexperienced programmers produce a particular solution that doesn't work with such regularity, that it is worth mentioning. They suggest to check the four corners of box A, to see if any are containing within box B, and also check B's corners to see if they are contained within A. But this approach fails in the following example.
+
+
+
+The correct approach is to work by process of eliminating situations when the two AABB's do not intersect?
+The boxes cannot intersect if :
+	- if A is completely to the left of B,
+	- or completely to the right
+	- or completly above
+	- or completly below.
+
+Are there any other cases to consider? No. If A is completely to the left or right of B, then the vertical positions of the boxes do not matter. If two boxes do not intersect, they will fit into at at least one of the four cases just mentioned.
+
+
+This is the correct answer:
+
+bool BoxesIntersect(const Box2D &a, const Box2D &b)
+{
+    if (a.max.x < b.min.x) return false; // a is left of b
+    if (a.min.x > b.max.x) return false; // a is right of b
+    if (a.max.y < b.min.y) return false; // a is above b
+    if (a.min.y > b.max.y) return false; // a is below b
+    return true; // boxes overlap
+}
+
+

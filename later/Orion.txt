@@ -1,0 +1,8 @@
+
+orion comme indicateur de direction
+
+table des directions indiquées par la fleche orion sur l'horizon à minuit toute l'année
+(verifier si possible à toutes les latitudes ??)
+
+faire une table des 265  positions d'orion, 
+à chaque jour et heure  donner la direction indiquée par la pointe d'Orion

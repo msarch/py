@@ -1,0 +1,17 @@
+Metadata-Version: 1.1
+Name: pylygon
+Version: 1.3.2rc
+Summary: polygon object for python
+Home-page: http://code.google.com/p/pylygon/
+Author: Chandler Armstrong
+Author-email: omni.armstrong@gmail.com
+License: UNKNOWN
+Download-URL: http://code.google.com/p/pylygon/downloads/list
+Description: UNKNOWN
+Platform: UNKNOWN
+Classifier: Development Status :: 4 - Beta
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: GNU General Public License (GPL)
+Classifier: Topic :: Software Development :: Libraries :: pygame
+Requires: pygame(>=1.9.1)
+Provides: pylygon

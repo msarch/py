@@ -1,0 +1,9 @@
+Meta:
+
+	A Test Animation for initial Collision Detection or Entity
+	
+Data:
+	CharizardEvolve.png
+		0 - 0 0 49 68 : 0.5s
+		1 - 50 0 69 68 : 0.5s
+		2 - 119 0 80 68 : 0.5s

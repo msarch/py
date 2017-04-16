@@ -1,0 +1,17 @@
+
+# SVG parser based on Nodebox-svg extension library,
+# mod:TT --> begin tweaking to depend only from NodeboxGL
+--------------------------------------------------------------
+02 / not critical / status : 
+--------------------------------------------------------------
+restore the functions : 
+	- path color info
+	- move
+removed from the original module because of their dependencies
+to the nodebox app.
+
+--------------------------------------------------------------
+01 / status : done
+--------------------------------------------------------------
+remove Nodebox.app dependencies 
+- except 'arc.py'

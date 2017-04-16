@@ -1,0 +1,3 @@
+Basé sur le code 
+
+premier essai de possibilité d'accès à chaque point des paths chargés en svg.

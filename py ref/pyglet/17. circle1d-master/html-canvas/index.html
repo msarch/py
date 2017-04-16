@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Circle1D JavaScript Demo</title>
+        <meta http-equiv="content-type" content="text/html; charset=utf-8">
+        <script type="text/javascript" src="circle1d.js"></script>
+        <script type="text/javascript">
+            function init() {
+                function Renderer(canvas) {
+                    this.canvas = canvas;
+                    this.ctx = canvas.getContext('2d');
+                    this.lastPos = null;
+                    var that = this;
+
+                    function mapPos(evt) {
+                        var rect = canvas.getBoundingClientRect();
+                        return new C1DVec2(evt.clientX - rect.left, evt.clientY - rect.top);
+                    };
+
+                    this.canvas.addEventListener('mousedown', function(evt) {
+                        this.lastPos = mapPos(evt);
+                        scene.handle(new C1DEvent(C1DEvent.PRESS, this.lastPos));
+                    });
+
+                    this.canvas.addEventListener('mousemove', function(evt) {
+                        var pos = mapPos(evt);
+                        scene.handle(new C1DEvent(C1DEvent.DRAG, pos.sub(this.lastPos)));
+                        this.lastPos = pos;
+                    });
+
+                    this.canvas.addEventListener('mouseup', function(evt) {
+                        scene.handle(new C1DEvent(C1DEvent.RELEASE, mapPos(evt)));
+                    });
+
+                };
+
+                Renderer.prototype.draw_circle = function(pos, size) {
+                    this.ctx.beginPath();
+                    this.ctx.arc(pos.x, pos.y, size, 0, 2 * Math.PI, false);
+                    this.ctx.strokeStyle = 'rgb(100%, 0%, 0%)';
+                    this.ctx.stroke();
+                };
+
+                Renderer.prototype.draw_line = function(a, b) {
+                    this.ctx.beginPath();
+                    this.ctx.moveTo(a.x, a.y);
+                    this.ctx.lineTo(b.x, b.y);
+                    this.ctx.strokeStyle = 'rgb(0%, 100%, 0%)';
+                    this.ctx.stroke();
+                };
+
+                var renderer = new Renderer(document.getElementById('canvas'));
+                var scene = new C1DScene(renderer);
+
+                var o = null;
+                var n = null;
+                for (var i=0; i<50; i++) {
+                    n = new C1DObject(scene, 200+(i%10)*30, 30+(i/10)*40, 20, C1DObject.COLLIDER);
+                    if (o !== null && (i%10 != 0)) {
+                        new C1DJoint(scene, o, n);
+                    }
+                    o = n;
+                }
+                for (i=0; i<30; i++) {
+                    new C1DObject(scene, 20+i*60, 500, 30, C1DObject.FIXED | C1DObject.COLLIDER);
+                }
+
+                var a = new C1DObject(scene, 100, 100, 20, C1DObject.COLLIDER | C1DObject.FIXED);
+                var b = new C1DObject(scene, 200, 100, 20, C1DObject.COLLIDER);
+                var j = new C1DJoint(scene, a, b, C1DJoint.NONE);
+
+                function update() {
+                    renderer.ctx.clearRect(0, 0, renderer.canvas.width, renderer.canvas.height);
+                    for (var i=0; i<2; i++) scene.simulate();
+                    scene.render();
+                }
+
+                window.setInterval(update, 20);
+            }
+        </script>
+    </head>
+    <body onload="init();" style="background-color: black; color: white;">
+        <canvas id="canvas" width="800" style="border: 1px solid white;" height="600"></canvas>
+        <br>
+        <small>
+        <a style="color: white;" href="http://thp.io/2013/circle1d/">Circle1D</a>:
+        A lame 2D "Physics" Engine
+        </small>
+    </body>
+</html>

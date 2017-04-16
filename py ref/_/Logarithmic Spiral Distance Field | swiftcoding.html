@@ -1,0 +1,847 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>Logarithmic Spiral Distance Field | swiftcoding</title>
+	<link rel="profile" href="http://gmpg.org/xfn/11" />
+	<link rel="pingback" href="http://swiftcoder.wordpress.com/xmlrpc.php" />
+	<!--[if lt IE 9]>
+	<script src="https://s2.wp.com/wp-content/themes/pub/blaskan/js/html5.js" type="text/javascript"></script>
+	<![endif]-->
+	<link rel="alternate" type="application/rss+xml" title="swiftcoding &raquo; Feed" href="https://swiftcoder.wordpress.com/feed/" />
+<link rel="alternate" type="application/rss+xml" title="swiftcoding &raquo; Comments Feed" href="https://swiftcoder.wordpress.com/comments/feed/" />
+<link rel="alternate" type="application/rss+xml" title="swiftcoding &raquo; Logarithmic Spiral Distance&nbsp;Field Comments Feed" href="https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/feed/" />
+<script type="text/javascript">
+/* <![CDATA[ */
+function addLoadEvent(func){var oldonload=window.onload;if(typeof window.onload!='function'){window.onload=func;}else{window.onload=function(){oldonload();func();}}}
+/* ]]> */
+</script>
+<link rel='stylesheet' id='all-css-0' href='https://s1.wp.com/_static/??-eJx9kOEKgzAMhF9oXRg6x36MPUu1tVZjU0yK+PYrbjDBuX8JfHeXC8xRNRTEBoExqYjJ+cCAfrAMvZWom0Gt27lhPsEGr5HcV0DOWUNJVEuINMPsjbOyE20yInGmUfsJWBa0O1Y6O+YrYqpzluZBhwNwY+pD64OX5Yf4yL8rwSHVGv/5vuswZOQzKzd5o3Qw+T28Fn2Oj0tRVbeyuBb3/gXbpYDr' type='text/css' media='all' />
+<script type='text/javascript'>
+/* <![CDATA[ */
+var LoggedOutFollow = {"invalid_email":"Your subscription did not succeed, please try again with a valid email address."};
+/* ]]> */
+</script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var objectL10n = {"blaskan_navigation_title":"- Navigation -"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s0.wp.com/_static/??-eJyFkNFyAiEMRX+okXU61adOv4VlIwYJoQTcsV8vq7bTWmd8IgMnOdyYOYOTVDFVE9SwjBQRmmKxvt8BpZ2sgr6YzlFysU2oCxg+G5bT7XgKAJMvtuI3+MuYRSujatc9eP2roXQknJ9iAWu27gAFlb7+TR2jeMixeUpqeu1xklZhJzHKbGaaPNZHgZwwLxspmONpxZTuB9c99iAmt7E7rB5sWtrUFcr1nuX284Wr8aK4ljA2znBL+sHv69ftetgOb8MmnAEHg6Dh'></script>
+<link rel='stylesheet' id='all-css-0' href='https://s0.wp.com/wp-content/mu-plugins/highlander-comments/style.css?m=1369818522g' type='text/css' media='all' />
+<!--[if lt IE 8]>
+<link rel='stylesheet' id='highlander-comments-ie7-css'  href='https://s2.wp.com/wp-content/mu-plugins/highlander-comments/style-ie7.css?m=1351637563g&#038;ver=20110606' type='text/css' media='all' />
+<![endif]-->
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="https://swiftcoder.wordpress.com/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="https://swiftcoder.wordpress.com/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='The price of&nbsp;progress' href='https://swiftcoder.wordpress.com/2010/01/21/the-price-of-progress/' />
+<link rel='next' title='Bidding a Freelance&nbsp;Contract' href='https://swiftcoder.wordpress.com/2011/10/28/bidding-a-freelance-contract/' />
+<meta name="generator" content="WordPress.com" />
+<link rel='canonical' href='https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/' />
+<link rel='shortlink' href='http://wp.me/pdwMN-6t' />
+<link rel="alternate" type="application/json+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=json&amp;url=https%3A%2F%2Fswiftcoder.wordpress.com%2F2010%2F06%2F21%2Flogarithmic-spiral-distance-field%2F&amp;for=wpcom-auto-discovery" /><link rel="alternate" type="application/xml+oembed" href="http://public-api.wordpress.com/oembed/1.0/?format=xml&amp;url=https%3A%2F%2Fswiftcoder.wordpress.com%2F2010%2F06%2F21%2Flogarithmic-spiral-distance-field%2F&amp;for=wpcom-auto-discovery" />
+<!-- Jetpack Open Graph Tags -->
+<meta property="og:type" content="article" />
+<meta property="og:title" content="Logarithmic Spiral Distance Field" />
+<meta property="og:url" content="https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/" />
+<meta property="og:description" content="I have been playing around with distance field rendering, inspired by some of Iñigo Quílez&#039;s work. Along the way I needed to define analytic distance functions for a number of fairly esoteric geome..." />
+<meta property="og:site_name" content="swiftcoding" />
+<meta property="og:image" content="https://i0.wp.com/swiftcoder.files.wordpress.com/2010/06/spiral.png?fit=1000%2C1000" />
+<meta name="twitter:site" content="@wordpressdotcom" />
+<meta name="twitter:image" content="https://i0.wp.com/swiftcoder.files.wordpress.com/2010/06/spiral.png?fit=1000%2C1000" />
+<meta name="twitter:card" content="photo" />
+<meta name="twitter:creator" content="@wordpressdotcom" />
+<meta property="fb:app_id" content="249643311490" />
+<link rel="shortcut icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/c53d299a0b40fb6ebc5e1a963bb957fb?s=16" sizes="16x16" />
+<link rel="icon" type="image/x-icon" href="https://secure.gravatar.com/blavatar/c53d299a0b40fb6ebc5e1a963bb957fb?s=16" sizes="16x16" />
+<link rel="apple-touch-icon-precomposed" href="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=114" />
+<link rel='openid.server' href='http://swiftcoder.wordpress.com/?openidserver=1' />
+<link rel='openid.delegate' href='http://swiftcoder.wordpress.com/' />
+<link rel="search" type="application/opensearchdescription+xml" href="https://swiftcoder.wordpress.com/osd.xml" title="swiftcoding" />
+<link rel="search" type="application/opensearchdescription+xml" href="http://wordpress.com/opensearch.xml" title="WordPress.com" />
+		<style>
+		/* <![CDATA[ */
+		/* Block: reblog */
+		
+		.reblog-from img                   { margin: 0 10px 0 0; vertical-align: middle; padding: 0; border: 0; }
+		.reblogger-note img.avatar         { float: left; padding: 0; border: 0; }
+		.reblogger-note-content            { margin: 0 0 20px; }
+		.reblog-post .wpcom-enhanced-excerpt-content { border-left: 3px solid #eee; padding-left: 15px; }
+		.reblog-post ul.thumb-list         { display: block; list-style: none; margin: 2px 0; padding: 0; clear: both; }
+		.reblog-post ul.thumb-list li      { display: inline; margin: 0; padding: 0 1px; border: 0; }
+		.reblog-post ul.thumb-list li a    { margin: 0; padding: 0; border: 0; }
+		.reblog-post ul.thumb-list li img  { margin: 0; padding: 0; border: 0; }
+		
+		.reblog-post .wpcom-enhanced-excerpt { clear: both; }
+		
+		.reblog-post .wpcom-enhanced-excerpt address,
+		.reblog-post .wpcom-enhanced-excerpt li,
+		.reblog-post .wpcom-enhanced-excerpt h1,
+		.reblog-post .wpcom-enhanced-excerpt h2,
+		.reblog-post .wpcom-enhanced-excerpt h3,
+		.reblog-post .wpcom-enhanced-excerpt h4,
+		.reblog-post .wpcom-enhanced-excerpt h5,
+		.reblog-post .wpcom-enhanced-excerpt h6,
+		.reblog-post .wpcom-enhanced-excerpt p { font-size: 100% !important; }
+		
+		.reblog-post .wpcom-enhanced-excerpt blockquote,
+		.reblog-post .wpcom-enhanced-excerpt pre,
+		.reblog-post .wpcom-enhanced-excerpt code,
+		.reblog-post .wpcom-enhanced-excerpt q { font-size: 98% !important; }
+		
+
+		/* ]]> */
+		</style>
+		<meta name="application-name" content="swiftcoding" /><meta name="msapplication-window" content="width=device-width;height=device-height" /><meta name="msapplication-tooltip" content="Ramblings on code, etc." /><meta name="msapplication-task" content="name=Subscribe;action-uri=https://swiftcoder.wordpress.com/feed/;icon-uri=https://secure.gravatar.com/blavatar/c53d299a0b40fb6ebc5e1a963bb957fb?s=16" /><meta name="msapplication-task" content="name=Sign up for a free blog;action-uri=http://wordpress.com/signup/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Support;action-uri=http://support.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="msapplication-task" content="name=WordPress.com Forums;action-uri=http://forums.wordpress.com/;icon-uri=https://s2.wp.com/i/favicon.ico" /><meta name="title" content="Logarithmic Spiral Distance&nbsp;Field | swiftcoding on WordPress.com" />
+<meta name="description" content="Ramblings on code, etc. (by Tristam MacDonald)" />
+<style id="syntaxhighlighteranchor"></style>
+</head>
+<body class="single single-post postid-401 single-format-standard advanced-menu sidebar content-wide-sidebar content-wide footer-widgets mp6 highlander-enabled highlander-light">
+<div id="site">
+	<div id="wrapper">
+		<header id="header" role="banner">
+			<h1 id="site-name"><a href="https://swiftcoder.wordpress.com/" title="swiftcoding" rel="home">swiftcoding</a></h1><div id="header-message">Ramblings on code, etc.</div><nav id="nav" role="navigation"><div class="menu"><ul><li class="page_item page-item-2"><a href="https://swiftcoder.wordpress.com/about/">About</a></li><li class="page_item page-item-371"><a href="https://swiftcoder.wordpress.com/planets/">Planets</a><ul class='children'><li class="page_item page-item-373"><a href="https://swiftcoder.wordpress.com/planets/isosurface-extraction/">Isosurface&nbsp;Extraction</a></li></ul></li></ul></div>
+</nav>		</header>
+		<!-- / #header -->
+
+	<section id="content" role="main">
+		
+
+		<article id="post-401" class="post-401 post type-post status-publish format-standard hentry category-development tag-mathematics tag-procedural-generation tag-python">
+		<header>
+			
+							<time datetime="2010-06-21T10:50:01+00:00" pubdate>June 21, 2010</time>
+			
+							<h1>Logarithmic Spiral Distance&nbsp;Field</h1>
+					</header>
+
+		<div class="content">
+			<p>I have been playing around with distance field rendering, inspired by some of <a href="http://iquilezles.org/prods/" target="_blank">Iñigo Quílez&#8217;s work</a>. Along the way I needed to define analytic distance functions for a number of fairly esoteric geometric primitives, among them the <a href="http://en.wikipedia.org/wiki/Logarithmic_spiral" target="_blank">logarithmic spiral</a>:<br />
+<img class="alignnone" src="http://upload.wikimedia.org/wikipedia/commons/thumb/4/40/Logarithmic_Spiral_Pylab.svg/260px-Logarithmic_Spiral_Pylab.svg.png" alt="" width="260" height="260" /><span id="more-401"></span><br />
+The distance function for this spiral is not particularly hard to derive, but the derivation isn&#8217;t entirely straightforward, and it isn&#8217;t documented anywhere else, so I thought I would share. I am only going to deal with logarithmic spirals centered on the origin, but the code is trivial to extend for spirals under translation.</p>
+<p>Spirals are considerably more tractable in polar coordinates, so we start with the polar coordinate form of the logarithmic spiral equation:</p>
+<p><img src='https://s-ssl.wordpress.com/latex.php?latex=r+%3D+ae%5E%7Bb%5CTheta%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0' alt='r = ae^{b&#92;Theta}' title='r = ae^{b&#92;Theta}' class='latex' /> (1)</p>
+<p>Where (roughly) a controls the starting angle, and b controls how tightly the spiral is wound.</p>
+<p>Since we are given an input point in x,y Cartesian form, we need to convert that to polar coordinates as well:</p>
+<p><img src='https://s-ssl.wordpress.com/latex.php?latex=r_%7Btarget%7D+%3D+%5Csqrt%7Bx%5E2+%2B+y%5E2%7D%2C%5C%3B+%5CTheta_%7Btarget%7D+%3D+atan%28y%2Fx%29&amp;bg=ffffff&amp;fg=000000&amp;s=0' alt='r_{target} = &#92;sqrt{x^2 + y^2},&#92;; &#92;Theta_{target} = atan(y/x)' title='r_{target} = &#92;sqrt{x^2 + y^2},&#92;; &#92;Theta_{target} = atan(y/x)' class='latex' /></p>
+<p>Now, we can observe that the closest point on the spiral to our input point must be on the line running through our input point and the origin &#8211; draw the line on the graph above if you want to check for yourself. Since the logarithmic spiral passes through the same radius line every 360°, this means than the closest point must be at an angle of:</p>
+<p><img src='https://s-ssl.wordpress.com/latex.php?latex=%5CTheta_%7Bfinal%7D+%3D+%5CTheta_%7Btarget%7D+%2B+n+%2A360%5E%7B%5Ccirc%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0' alt='&#92;Theta_{final} = &#92;Theta_{target} + n *360^{&#92;circ}' title='&#92;Theta_{final} = &#92;Theta_{target} + n *360^{&#92;circ}' class='latex' /> (2)</p>
+<p>Where n is a non-negative integer. We can combine (1) and (2), to arrive at an equation for r in terms of n:</p>
+<p><img src='https://s-ssl.wordpress.com/latex.php?latex=r+%3D+ae%5E%7Bb%28%5CTheta_%7Btarget%7D+%2B+n%2A360%5E%7B%5Ccirc%7D%29%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0' alt='r = ae^{b(&#92;Theta_{target} + n*360^{&#92;circ})}' title='r = ae^{b(&#92;Theta_{target} + n*360^{&#92;circ})}' class='latex' /> (3)</p>
+<p>Which means we can find r if we know n. Unfortunately we don&#8217;t know n, but we do know r<sub>target</sub>, which is an approximation for the value of r. We start by rearranging equation (3) in terms of n:</p>
+<p><img src='https://s-ssl.wordpress.com/latex.php?latex=n+%3D+%5Cfrac%7B%5Cfrac%7Bln%28%5Cfrac%7Br%7D%7Ba%7D%29%7D%7Bb%7D+-+%5CTheta_%7Btarget%7D%7D%7B360%5E%7B%5Ccirc%7D%7D&amp;bg=ffffff&amp;fg=000000&amp;s=0' alt='n = &#92;frac{&#92;frac{ln(&#92;frac{r}{a})}{b} - &#92;Theta_{target}}{360^{&#92;circ}}' title='n = &#92;frac{&#92;frac{ln(&#92;frac{r}{a})}{b} - &#92;Theta_{target}}{360^{&#92;circ}}' class='latex' /> (4)</p>
+<p>Now, feeding in the value of r<sub>target</sub> for r will give us an approximate value for n. This approximation will be a real (float, if you prefer), and we can observe from the graph above that the closest point must be at either the next larger or smaller integer value of n.</p>
+<p>If we take the floor and ceil of our approximation for n, we will have both integer quantities, and can feed each value back into equation (3) to determine the two possible values of r, r<sub>1</sub> and r<sub>2</sub>. The final step involves finding which of these is the closest, and the distance thereof:</p>
+<p><img src='https://s-ssl.wordpress.com/latex.php?latex=min%28%7Cr_1-r%7C%2C+%7Cr_2-r%7C%29&amp;bg=ffffff&amp;fg=000000&amp;s=0' alt='min(|r_1-r|, |r_2-r|)' title='min(|r_1-r|, |r_2-r|)' class='latex' /></p>
+<p>And there you have it:</p>
+<div id="attachment_407" class="wp-caption alignnone" style="width: 520px"><a href="http://swiftcoder.files.wordpress.com/2010/06/spiral.png"><img class="size-full wp-image-407" title="spiral" src="http://swiftcoder.files.wordpress.com/2010/06/spiral.png?w=830" alt=""   /></a><p class="wp-caption-text">Distance field for a logarithmic spiral</p></div>
+<p>The python source code below produces the image shown above, as a 1000&#215;1000 pixel image PNM image written to stdout. If you aren&#8217;t familiar with the <a href="http://en.wikipedia.org/wiki/Netpbm_format#PGM_example" target="_blank">PNM format</a>, it is an exceedingly simple ascii-based analogue of a bitmap image, and can be loaded directly in <a href="http://www.gimp.org/" target="_blank">GIMP</a>.</p>
+<pre class="brush: python; title: ; notranslate" title="">
+import math
+
+def spiral(x, y, a=1.0, b=1.0):
+  # calculate the target radius and theta
+  r = math.sqrt(x*x + y*y)
+  t = math.atan2(y, x)
+
+  # early exit if the point requested is the origin itself
+  # to avoid taking the logarithm of zero in the next step
+  if (r == 0):
+    return 0
+
+  # calculate the floating point approximation for n
+  n = (math.log(r/a)/b - t)/(2.0*math.pi)
+
+  # find the two possible radii for the closest point
+  upper_r = a * math.pow(math.e, b * (t + 2.0*math.pi*math.ceil(n)))
+  lower_r = a * math.pow(math.e, b * (t + 2.0*math.pi*math.floor(n)))
+
+  # return the minimum distance to the target point
+  return min(abs(upper_r - r), abs(r - lower_r))
+
+# produce a PNM image of the result
+if __name__ == '__main__':
+  print 'P2'
+  print '# distance field image for spiral'
+  print '1000 1000'
+  print '255'
+  for i in range(-500, 500):
+    for j in range(-500, 500):
+      print '%3d' % min( 255, int(spiral(i, j, 1.0, 0.5)) ),
+    print
+</pre>
+<div id="jp-post-flair" class="sharedaddy sd-like-enabled"><div class='sharedaddy sd-block sd-like jetpack-likes-widget-wrapper jetpack-likes-widget-unloaded' id='like-post-wrapper-3224297-401-51d48cc7dd151' data-src='https://widgets.wp.com/likes/#blog_id=3224297&amp;post_id=401&amp;origin=https://swiftcoder.wordpress.com&amp;obj_id=3224297-401-51d48cc7dd151' data-name='like-post-frame-3224297-401-51d48cc7dd151'><h3 class='sd-title'>Like this:</h3><div class='post-likes-widget-placeholder' style='height:55px'><span class='button'><span>Like</span></span> <span class="loading">Loading...</span></div><span class='sd-text-color'></span><a class='sd-link-color'></a></div></div>			
+					</div>
+		<!-- / .content -->
+
+		<footer>
+							<span class="author"><span class="author-label">Written by</span> <a href="https://swiftcoder.wordpress.com/author/swiftcoder/" title="Posts by Tristam MacDonald" rel="author">Tristam MacDonald</a></span>
+													<span class="categories">
+					<span class="categories-label">Posted in</span> <a href="https://swiftcoder.wordpress.com/category/development/" title="View all posts in Development" rel="category tag">Development</a>				</span>
+										<span class="tags">
+					<span class="tags-label">Tagged with</span> <a href="https://swiftcoder.wordpress.com/tag/mathematics/" rel="tag">Mathematics</a>, <a href="https://swiftcoder.wordpress.com/tag/procedural-generation/" rel="tag">procedural generation</a>, <a href="https://swiftcoder.wordpress.com/tag/python/" rel="tag">python</a>				</span>
+			
+					</footer>
+	</article>
+	<!-- / #post-401 -->
+	<section id="comments">
+	
+			<h1 id="comments-title">2 comments</h1>
+
+		
+		<ol id="commentlist">		<li class="comment even thread-even depth-1 highlander-comment" id="comment-352">
+			<article>
+				<header class="comment-header">
+				  	<figure><img alt='' src='https://2.gravatar.com/avatar/e9e80aadfe17ae40c838b78d66c84574?s=40&amp;d=identicon&amp;r=PG' class='avatar avatar-40' height='40' width='40' /></figure>				<time><a href="https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/#comment-352">August 30, 2012 - 4:39 am</a></time>
+
+								  	<cite><a href='http://logos7.pl' rel='external nofollow' class='url'>Logos</a></cite>							</header>
+
+			
+			<p>Excellent work!</p>
+<p>Could you show other distance estimators?<br />
+I can give you my estimators in return.</p>
+
+			<div class="reply">
+				<a class='comment-reply-link' href='/2010/06/21/logarithmic-spiral-distance-field/?replytocom=352#respond' onclick='return addComment.moveForm("comment-352", "352", "respond", "401")'>Reply</a>
+							</div><!-- .reply -->
+			  </article>
+		</li><!-- #comment-## -->
+		<li class="comment odd alt thread-odd thread-alt depth-1 highlander-comment" id="comment-377">
+			<article>
+				<header class="comment-header">
+				  	<figure><img alt='' src='https://0.gravatar.com/avatar/f8256d236083cd9a830b6374292c62b5?s=40&amp;d=identicon&amp;r=PG' class='avatar avatar-40' height='40' width='40' /></figure>				<time><a href="https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/#comment-377">December 14, 2012 - 1:44 pm</a></time>
+
+								  	<cite>Gulli</cite>							</header>
+
+			
+			<p>Thanks so much for your code, unfortunately it is not entirely accurate.  If you write down the equations for a distance to the spiral arm you will find out that theta = theta_target does not provide a minimal solution unless b is very small.  The equation for extreme points in the distance to the spiral is<br />
+a*b*exp(th*b) &#8211; r_t*b*cos(th-th_t) &#8211; r_t*sin(th-th_t) = 0<br />
+where th is theta and _t is for the target.  Note that th = th_t does not solve this equation unless b = 0.</p>
+
+			<div class="reply">
+				<a class='comment-reply-link' href='/2010/06/21/logarithmic-spiral-distance-field/?replytocom=377#respond' onclick='return addComment.moveForm("comment-377", "377", "respond", "401")'>Reply</a>
+							</div><!-- .reply -->
+			  </article>
+		</li><!-- #comment-## -->
+</ol>
+
+			
+									<div id="respond" class="comment-respond">
+				<h3 id="reply-title" class="comment-reply-title">Leave a Reply <small><a rel="nofollow" id="cancel-comment-reply-link" href="/2010/06/21/logarithmic-spiral-distance-field/#respond" style="display:none;">Cancel reply</a></small></h3>
+									<form action="https://swiftcoder.wordpress.com/wp-comments-post.php" method="post" id="commentform" class="comment-form">
+																										
+
+
+												<input type="hidden" id="highlander_comment_nonce" name="highlander_comment_nonce" value="64ecc8ea5b" /><input type="hidden" name="_wp_http_referer" value="/2010/06/21/logarithmic-spiral-distance-field/" />
+<input type="hidden" name="hc_post_as" id="hc_post_as" value="guest" />
+
+<div class="comment-form-field comment-textarea">
+	<label for="comment">Enter your comment here...</label>
+	<div id="comment-form-comment"><textarea id="comment" name="comment" title="Enter your comment here..."></textarea></div>
+</div>
+
+<div id="comment-form-identity">
+
+	<div id="comment-form-nascar">
+		<p>Fill in your details below or click an icon to log in:</p>
+		<ul>
+			<li class="selected" style="display:none;">
+				<a href="#comment-form-guest" id="postas-guest" title="Guest">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:WordPress.com" id="postas-wordpress" title="WordPress.com">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Twitter" id="postas-twitter" title="Twitter">
+					<span></span>
+				</a>
+			</li>
+			<li>
+				<a href="#comment-form-load-service:Facebook" id="postas-facebook" title="Facebook">
+					<span></span>
+				</a>
+			</li>
+		</ul>
+	</div>
+
+	<div id="comment-form-guest" class="comment-form-service selected">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+<a href="https://gravatar.com/site/signup/" target="_blank">				<img src="https://0.gravatar.com/avatar/36e58c4bf81962ab0b29cdfaa3c8de04?s=25&amp;d=identicon&amp;r=PG" alt="Gravatar" width="25" class="no-grav" />
+</a>			</div>
+
+				<div class="comment-form-fields">
+				<div class="comment-form-field comment-form-email">
+					<label for="email">Email <span class="required">(required)</span> <span class="nopublish">(Address never made public)</span></label>
+					<div class="comment-form-input"><input id="email" name="email" type="email" value="b@d.com" /></div>
+				</div>
+				<div class="comment-form-field comment-form-author">
+					<label for="author">Name <span class="required">(required)</span></label>
+					<div class="comment-form-input"><input id="author" name="author" type="text" value="s" /></div>
+				</div>
+				<div class="comment-form-field comment-form-url">
+					<label for="url">Website</label>
+					<div class="comment-form-input"><input id="url" name="url" type="text" value="" /></div>
+				</div>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-wordpress" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://s2.wp.com/wp-content/mu-plugins/highlander-comments/images/wplogo.png" alt="WordPress.com Logo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="wp_avatar" id="wordpress-avatar" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_user_id" id="wordpress-user_id" class="comment-meta-wordpress" value="" />
+				<input type="hidden" name="wp_access_token" id="wordpress-access_token" class="comment-meta-wordpress" value="" />
+				<p class="comment-form-posting-as pa-wordpress"><strong></strong> You are commenting using your WordPress.com account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'wordpress' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-twitter" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=PG" alt="Twitter picture" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="twitter_avatar" id="twitter-avatar" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_user_id" id="twitter-user_id" class="comment-meta-twitter" value="" />
+				<input type="hidden" name="twitter_access_token" id="twitter-access_token" class="comment-meta-twitter" value="" />
+				<p class="comment-form-posting-as pa-twitter"><strong></strong> You are commenting using your Twitter account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'twitter' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+	<div id="comment-form-facebook" class="comment-form-service">
+		<div class="comment-form-padder">
+			<div class="comment-form-avatar">
+				<img src="https://1.gravatar.com/avatar/ad516503a11cd5ca435acc9bb6523536?s=25&amp;d=identicon&amp;forcedefault=y&amp;r=PG" alt="Facebook photo" width="25" class="no-grav" />
+			</div>
+
+				<div class="comment-form-fields">
+				<input type="hidden" name="fb_avatar" id="facebook-avatar" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_user_id" id="facebook-user_id" class="comment-meta-facebook" value="" />
+				<input type="hidden" name="fb_access_token" id="facebook-access_token" class="comment-meta-facebook" value="" />
+				<p class="comment-form-posting-as pa-facebook"><strong></strong> You are commenting using your Facebook account. <span class="comment-form-log-out">(&nbsp;<a href="javascript:HighlanderComments.doExternalLogout( 'facebook' );">Log&nbsp;Out</a>&nbsp;/&nbsp;<a href="#" onclick="javascript:HighlanderComments.switchAccount();return false;">Change</a>&nbsp;)</span></p>
+			</div>
+	
+		</div>
+	</div>
+
+
+	<div id="comment-form-load-service" class="comment-form-service">
+		<div class="comment-form-posting-as-cancel"><a href="javascript:HighlanderComments.cancelExternalWindow();">Cancel</a></div>
+		<p>Connecting to %s</p>
+	</div>
+
+	
+</div>
+
+<script type="text/javascript">
+jQuery(document).ready(function(){
+	var input = document.createElement( 'input' ),
+	    comment = jQuery( '#comment' );
+
+	if ( 'placeholder' in input ) {
+		comment.attr( 'placeholder', jQuery( '.comment-textarea label' ).remove().text() );
+	}
+
+	// Expando Mode: start small, then auto-resize on first click + text length
+	jQuery( '#comment-form-identity' ).hide();
+	jQuery( '#comment-form-subscribe' ).hide();
+	jQuery( '#commentform .form-submit' ).hide();
+
+	comment.css( { 'height':'10px' } ).one( 'focus', function() {
+		var timer = setInterval( HighlanderComments.resizeCallback, 10 )
+		jQuery( this ).animate( { 'height': HighlanderComments.initialHeight } ).delay( 100 ).queue( function(n) { clearInterval( timer ); HighlanderComments.resizeCallback(); n(); } );
+		jQuery( '#comment-form-identity' ).slideDown();
+		jQuery( '#comment-form-subscribe' ).slideDown();
+		jQuery( '#commentform .form-submit' ).slideDown();
+	});
+});
+</script>
+
+<div id="comment-form-subscribe">
+	<p class="comment-subscription-form"><input type="checkbox" name="subscribe" id="subscribe" value="subscribe" style="width: auto;" tabindex="6"/> <label class="subscribe-label" id="subscribe-label" for="subscribe" style="display: inline;">Notify me of follow-up comments via email.</label></p></div>
+
+												<p class="form-submit">
+							<input name="submit" type="submit" id="comment-submit" value="Post Comment" />
+							<input type='hidden' name='comment_post_ID' value='401' id='comment_post_ID' />
+<input type='hidden' name='comment_parent' id='comment_parent' value='0' />
+						</p>
+						
+<input type="hidden" name="genseq" value="1372884167" />
+<p style="display: none;"><input type="hidden" id="akismet_comment_nonce" name="akismet_comment_nonce" value="1a83b65d02" /></p><script type='text/javascript' src='https://s2.wp.com/wp-content/mu-plugins/akismet-2.5/form.js?m=1308783962g'></script>
+<p style="display: none;"><input type="hidden" id="ak_js" name="ak_js" value="140"/></p>					</form>
+							</div><!-- #respond -->
+			<div style="clear: both"></div>			
+</section>
+<!-- / #comments -->
+			<nav class="navigation" role="navigation">
+			<div class="nav-previous"><a href="https://swiftcoder.wordpress.com/2010/01/21/the-price-of-progress/" rel="prev">The price of&nbsp;progress</a></div>
+			<div class="nav-next"><a href="https://swiftcoder.wordpress.com/2011/10/28/bidding-a-freelance-contract/" rel="next">Bidding a Freelance&nbsp;Contract</a></div>
+		</nav>
+		<!-- / .navigation -->
+	
+
+	</section>
+	<!-- / #content -->
+
+
+	<aside id="primary" role="complementary">
+		<section id="tag_cloud-2" class="widget widget_tag_cloud"><h3 class="title"></h3><div style="overflow: hidden;"><a href="http://swiftcoder.wordpress.com/category/development/" style="font-size: 175%; padding: 1px; margin: 1px;"  title="Development (31)">Development</a> <a href="http://swiftcoder.wordpress.com/category/freelancing/" style="font-size: 75%; padding: 1px; margin: 1px;"  title="Freelancing (1)">Freelancing</a> <a href="http://swiftcoder.wordpress.com/category/games/" style="font-size: 88.333333333333%; padding: 1px; margin: 1px;"  title="Games (5)">Games</a> <a href="http://swiftcoder.wordpress.com/category/mac/" style="font-size: 81.666666666667%; padding: 1px; margin: 1px;"  title="Mac (3)">Mac</a> <a href="http://swiftcoder.wordpress.com/category/simplui/" style="font-size: 91.666666666667%; padding: 1px; margin: 1px;"  title="simplui (6)">simplui</a> <a href="http://swiftcoder.wordpress.com/category/starfall/" style="font-size: 75%; padding: 1px; margin: 1px;"  title="Starfall (1)">Starfall</a> <a href="http://swiftcoder.wordpress.com/category/uncategorized/" style="font-size: 78.333333333333%; padding: 1px; margin: 1px;"  title="Uncategorized (2)">Uncategorized</a> </div></section><section id="top-posts-2" class="widget widget_top-posts"><h3 class="title">Top Posts</h3><ul class='widgets-list-layout no-grav'>
+					<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/planets/isosurface-extraction/" class="bump-view" data-bump-view="tp">Isosurface Extraction</a></div>
+					</li>
+									<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2008/11/25/constructing-a-billboard-matrix/" class="bump-view" data-bump-view="tp">Constructing a Billboard Matrix</a></div>
+					</li>
+									<li>
+						<img src="https://i1.wp.com/swiftcoder.wordpress.com/files/2008/12/life1.png?resize=40%2C40" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2008/12/20/conways-game-of-life-in-glslpyglet/" class="bump-view" data-bump-view="tp">Conway&#039;s Game of Life in GLSL/Pyglet</a></div>
+					</li>
+									<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2009/02/18/raii-why-is-it-unique-to-c/" class="bump-view" data-bump-view="tp">RAII: why is it unique to C++?</a></div>
+					</li>
+									<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2008/12/19/simple-glsl-wrapper-for-pyglet/" class="bump-view" data-bump-view="tp">Simple GLSL wrapper for Pyglet</a></div>
+					</li>
+									<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2008/12/25/pixel-perfect-sprite-collisions/" class="bump-view" data-bump-view="tp">Pixel-perfect Sprite Collisions</a></div>
+					</li>
+									<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/about/" class="bump-view" data-bump-view="tp">About</a></div>
+					</li>
+									<li>
+						<img src="https://i0.wp.com/swiftcoder.files.wordpress.com/2010/06/spiral.png?resize=40%2C40" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/" class="bump-view" data-bump-view="tp">Logarithmic Spiral Distance Field</a></div>
+					</li>
+									<li>
+						<img src="https://secure.gravatar.com/blavatar/ac73112cc87f267d1e2b2b5851c50792?s=96" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2009/02/04/starforce-the-ultimate-evil/" class="bump-view" data-bump-view="tp">StarForce - the ultimate evil</a></div>
+					</li>
+									<li>
+						<img src="https://i0.wp.com/swiftcoder.wordpress.com/files/2009/06/simplui-themes.png?resize=40%2C40" class='widgets-list-layout-blavatar' />
+						<div class="widgets-list-layout-links"><a href="https://swiftcoder.wordpress.com/2009/06/01/simplui-1-0-2-released-now-with-themes/" class="bump-view" data-bump-view="tp">Simplui 1.0.2 released - now with themes!</a></div>
+					</li>
+				</ul>
+</section><section id="meta-3" class="widget widget_meta"><h3 class="title">Meta</h3>			<ul>
+			<li><a href="https://wordpress.com/signup/?ref=wplogin">Register</a></li>			<li><a href="https://swiftcoder.wordpress.com/wp-login.php">Log in</a></li>
+			<li><a href="https://swiftcoder.wordpress.com/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="https://swiftcoder.wordpress.com/comments/feed/" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.com/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.com</a></li>						</ul>
+</section>	</aside>
+
+
+		<footer id="footer">
+				<div id="footer-widgets" role="complementary">
+		<section id="text-3" class="widget widget_text">			<div class="textwidget"><a href="http://www.hostmonster.com/track/swiftcoder">HostMonster web hosting - cheap and reliable.</a></div>
+		</section>	</div>
+			<nav id="footer-nav" role="navigation">
+							</nav>
+			<div class="colophon">
+				<a href="http://wordpress.com/?ref=footer" rel="generator">Blog at WordPress.com</a>. |
+				<a href="http://theme.wordpress.com/themes/blaskan/" title="Learn more about this theme">The Blaskan Theme</a>. 			</div>
+		</footer>
+		<!-- / #footer -->
+	</div>
+	<!-- / #wrapper -->
+</div>
+<!-- / #site -->
+
+
+<script type="text/javascript">
+var _qevents = _qevents || [], wpcomQuantcastData = {"qacct":"p-18-mFEk4J448M","labels":",language.en,type.wpcom,posttag.mathematics,posttag.procedural-generation,posttag.python"};
+function wpcomQuantcastPixel( labels, options ) {
+	var i, defaults = wpcomQuantcastData, data = { event: 'ajax' };
+
+	labels  = labels  || '';
+	options = options || {};
+
+	if ( typeof labels != 'string' )
+		options = labels;
+
+	for ( i in defaults ) {
+		data[i] = defaults[i];
+	}
+
+	for ( i in options ) {
+		data[i] = options[i];
+	}
+
+	if ( data.labels ) {
+		data.labels += ',' + labels;
+	} else {
+		data.labels = labels;
+	}
+
+	_qevents.push( data );
+};
+(function() {var elem = document.createElement('script');elem.src = (document.location.protocol == "https:" ? "https://secure" : "http://edge") + ".quantserve.com/quant.js";elem.async = true;elem.type = "text/javascript";var scpt = document.getElementsByTagName('script')[0];scpt.parentNode.insertBefore(elem, scpt);  })();
+_qevents.push( wpcomQuantcastData );
+</script>
+<noscript><div style="display: none;"><img src="//pixel.quantserve.com/pixel/p-18-mFEk4J448M.gif?labels=%2Clanguage.en%2Ctype.wpcom%2Cposttag.mathematics%2Cposttag.procedural-generation%2Cposttag.python" height="1" width="1" alt="" /></div></noscript>
+
+<script type='text/javascript' src='//0.gravatar.com/js/gprofiles.js?ver=201327ac'></script>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var WPGroHo = {"my_hash":"36e58c4bf81962ab0b29cdfaa3c8de04"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/mu-plugins/gravatar-hovercards/wpgroho.js?m=1351637563g'></script>
+<script>jQuery(document).ready(function($){ Gravatar.profile_cb = function( h, d ) { WPGroHo.syncProfileData( h, d );	}; Gravatar.my_hash = WPGroHo.my_hash; Gravatar.init( 'body', '#wp-admin-bar-my-account' ); });</script>	<div style="display:none">
+	<div class="grofile-hash-map-e9e80aadfe17ae40c838b78d66c84574">
+	</div>
+	<div class="grofile-hash-map-f8256d236083cd9a830b6374292c62b5">
+	</div>
+	</div>
+<script type='text/javascript'>
+/* <![CDATA[ */
+var HighlanderComments = {"loggingInText":"Logging In\u2026","submittingText":"Posting Comment\u2026","postCommentText":"Post Comment","connectingToText":"Connecting to %s","commentingAsText":"%1$s: You are commenting using your %2$s account.","logoutText":"Log Out","loginText":"Log In","connectURL":"https:\/\/swiftcoder.wordpress.com\/public.api\/connect\/?action=request","logoutURL":"https:\/\/swiftcoder.wordpress.com\/wp-login.php?action=logout&_wpnonce=734493b873","homeURL":"https:\/\/swiftcoder.wordpress.com\/","postID":"401","gravDefault":"identicon","enterACommentError":"Please enter a comment","enterEmailError":"Please enter your email address here","invalidEmailError":"Invalid email address","enterAuthorError":"Please enter your name here","gravatarFromEmail":"This picture will show whenever you leave a comment. Click to customize it.","logInToExternalAccount":"Log in to use details from one of these accounts.","change":"Change","changeAccount":"Change Account","comment_registration":"","userIsLoggedIn":"","isJetpack":"0"};
+/* ]]> */
+</script>
+<script type='text/javascript' src='https://s2.wp.com/_static/??/wp-content/js/jquery/jquery.autoresize.js,/wp-content/mu-plugins/highlander-comments/script.js?m=1369800175j'></script>
+
+	<div id="bit" class="loggedout-follow-normal">
+		<a class="bsub" href="javascript:void(0)"><span id='bsub-text'>Follow</span></a>
+		<div id="bitsubscribe">
+
+					<h3><label for="loggedout-follow-field">Follow &ldquo;swiftcoding&rdquo;</label></h3>
+
+			<form action="https://subscribe.wordpress.com" method="post" accept-charset="utf-8" id="loggedout-follow">
+			<p>Get every new post delivered to your Inbox.</p>
+
+			<p id="loggedout-follow-error" style="display: none;"></p>
+
+			
+			<p><input type="email" name="email" style="width: 95%; padding: 1px 2px" value="Enter your email address" onfocus='this.value=(this.value=="Enter your email address") ? "" : this.value;' onblur='this.value=(this.value=="") ? "Enter email address" : this.value;'  id="loggedout-follow-field"/></p>
+
+			<input type="hidden" name="action" value="subscribe"/>
+			<input type="hidden" name="blog_id" value="3224297"/>
+			<input type="hidden" name="source" value="https://swiftcoder.wordpress.com/2010/06/21/logarithmic-spiral-distance-field/"/>
+			<input type="hidden" name="sub-type" value="loggedout-follow"/>
+
+			<input type="hidden" id="_wpnonce" name="_wpnonce" value="455251f52d" /><input type="hidden" name="_wp_http_referer" value="/2010/06/21/logarithmic-spiral-distance-field/" />
+			<p id='bsub-subscribe-button'><input type="submit" value="Sign me up" /></p>
+			</form>
+					<div id='bsub-credit'><a href="http://wordpress.com/signup/?ref=lof">Powered by WordPress.com</a></div>
+		</div><!-- #bitsubscribe -->
+	</div><!-- #bit -->
+		<iframe src='https://widgets.wp.com/likes/master.html?ver=20130620a#ver=20130620a&amp;mp6=1' scrolling='no' id='likes-master' name='likes-master' style='display:none;'></iframe>
+		<div id='likes-other-gravatars'><div class="likes-text"><span>%d</span> bloggers like this:</div><ul class="wpl-avatars sd-like-gravatars"></ul></div>
+		<script type="text/javascript">
+		//<![CDATA[
+			var jetpackLikesWidgetQueue = [];
+			var jetpackLikesMasterReady = false;
+
+			function JetpackLikespostMessage( message, target ) {
+				if ( "string" === typeof message ){
+					try{
+						message = JSON.parse( message );
+					}
+					catch(e) {
+						return;
+					}
+				}
+
+				pm( {
+					target: target,
+					type: 'likesMessage',
+					data: message,
+					origin: '*'
+				} );
+			}
+
+			function JetpackLikesMessageListener( event ) {
+				if ( "undefined" == typeof event.event )
+					return;
+
+				if ( 'masterReady' == event.event ) {
+					jQuery( document ).ready( function() {
+						jetpackLikesMasterReady = true;
+
+						var stylesData = {
+								event: 'injectStyles'
+						};
+
+						if ( jQuery( 'iframe.admin-bar-likes-widget' ).length > 0 ) {
+							JetpackLikespostMessage( { event: 'adminBarEnabled' }, window.frames[ 'likes-master' ] );
+
+							stylesData.adminBarStyles = {
+								background: jQuery( '#wpadminbar .quicklinks li#wp-admin-bar-wpl-like > a' ).css( 'background' )
+							};
+						}
+
+						if ( !window.addEventListener )
+							jQuery( '#wp-admin-bar-admin-bar-likes-widget' ).hide();
+
+						stylesData.textStyles = {
+							color: jQuery( '.sd-text-color').css( 'color' ),
+							fontFamily: jQuery( '.sd-text-color' ).css( 'font-family' ),
+							fontSize: jQuery( '.sd-text-color' ).css( 'font-size' ),
+							direction: jQuery( '.sd-text-color' ).css( 'direction' ),
+							fontWeight: jQuery( '.sd-text-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-text-color' ).css( 'font-style' ),
+							textDecoration: jQuery( '.sd-text-color' ).css('text-decoration')
+						};
+
+						stylesData.linkStyles = {
+							color: jQuery( '.sd-link-color' ).css('color'),
+							fontFamily: jQuery( '.sd-link-color' ).css('font-family'),
+							fontSize: jQuery( '.sd-link-color' ).css('font-size'),
+							textDecoration: jQuery( '.sd-link-color' ).css('text-decoration'),
+							fontWeight: jQuery( '.sd-link-color' ).css( 'font-weight' ),
+							fontStyle: jQuery( '.sd-link-color' ).css( 'font-style' )
+						};
+
+						JetpackLikespostMessage( stylesData, window.frames[ 'likes-master' ] );
+
+						var requests = [];
+						jQuery( '.jetpack-likes-widget-wrapper' ).each( function( i ) {
+							var regex = /like-(post|comment)-wrapper-(\d+)-(\d+)-(\w+)/;
+							var match = regex.exec( this.id );
+							if ( ! match || match.length != 5 )
+								return;
+
+							var info = {
+								blog_id: match[2],
+								width:   this.width
+							};
+
+							if ( 'post' == match[1] ) {
+								info.post_id = match[3];
+							} else if ( 'comment' == match[1] ) {
+								info.comment_id = match[3];
+							}
+
+							info.obj_id = match[4];
+
+							requests.push( info );
+						});
+
+						JetpackLikespostMessage( { event: 'initialBatch', requests: requests }, window.frames['likes-master'] );
+
+						jQuery( document ).on( 'inview', 'div.jetpack-likes-widget-unloaded', function() {
+							jetpackLikesWidgetQueue.push( this.id );
+						});
+					});
+				}
+
+				if ( 'showLikeWidget' == event.event ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 10 );
+					jQuery( '#' + event.id + ' .post-likes-widget-placeholder'  ).fadeOut( 'fast', function() {
+						jQuery( '#' + event.id + ' .post-likes-widget' ).fadeIn( 'fast', function() {
+							JetpackLikespostMessage( { event: 'likeWidgetDisplayed', blog_id: event.blog_id, post_id: event.post_id, obj_id: event.obj_id }, window.frames['likes-master'] );
+						});
+					});
+				}
+
+				if ( 'showOtherGravatars' == event.event ) {
+					var $container = jQuery( '#likes-other-gravatars' );
+					var $list = $container.find( 'ul' );
+
+					$container.hide();
+					$list.html( '' );
+
+					$container.find( '.likes-text span' ).text( event.total );
+
+					jQuery.each( event.likers, function( i, liker ) {
+						$list.append( '<li class="' + liker.css_class + '"><a href="' + liker.profile_URL + '" class="wpl-liker" rel="nofollow" target="_parent"><img src="' + liker.avatar_URL + '" alt="' + liker.name + '" width="30" height="30" style="padding-right: 3px;" /></a></li>');
+					} );
+
+					var offset = jQuery( "[name='" + event.parent + "']" ).offset();
+
+					$container.css( 'left', offset.left + event.position.left - 10 + 'px' );
+					$container.css( 'top', offset.top + event.position.top - 33 + 'px' );
+
+					var rowLength = Math.floor( event.width / 37 );
+					var height = ( Math.ceil( event.likers.length / rowLength ) * 37 ) + 13;
+					if ( height > 204 ) {
+						height = 204;
+					}
+
+					$container.css( 'height', height + 'px' );
+					$container.css( 'width', rowLength * 37 - 7 + 'px' );
+
+					$list.css( 'width', rowLength * 37 + 'px' );
+
+					$container.fadeIn( 'slow' );
+
+					var scrollbarWidth = $list[0].offsetWidth - $list[0].clientWidth;
+					if ( scrollbarWidth > 0 ) {
+						$container.width( $container.width() + scrollbarWidth );
+						$list.width( $list.width() + scrollbarWidth );
+					}
+				}
+			}
+
+			pm.bind( 'likesMessage', function(e) { JetpackLikesMessageListener(e); } );
+
+			jQuery( document ).click( function( e ) {
+				var $container = jQuery( '#likes-other-gravatars' );
+
+				if ( $container.has( e.target ).length === 0 ) {
+					$container.fadeOut( 'slow' );
+				}
+			});
+
+			function JetpackLikesWidgetQueueHandler() {
+				var wrapperID;
+				if ( ! jetpackLikesMasterReady ) {
+					setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+					return;
+				}
+
+				if ( jetpackLikesWidgetQueue.length > 0 ) {
+					// We may have a widget that needs creating now
+					var found = false;
+					while( jetpackLikesWidgetQueue.length > 0 ) {
+						// Grab the first member of the queue that isn't already loading.
+						wrapperID = jetpackLikesWidgetQueue.splice( 0, 1 )[0];
+						if ( jQuery( '#' + wrapperID ).hasClass( 'jetpack-likes-widget-unloaded' ) ) {
+							found = true;
+							break;
+						}
+					}
+					if ( ! found ) {
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				} else if ( jQuery( 'div.jetpack-likes-widget-unloaded' ).length > 0 ) {
+					// Get the next unloaded widget
+					wrapperID = jQuery( 'div.jetpack-likes-widget-unloaded' ).first()[0].id;
+					if ( ! wrapperID ) {
+						// Everything is currently loaded
+						setTimeout( JetpackLikesWidgetQueueHandler, 500 );
+						return;
+					}
+				}
+
+				var $wrapper = jQuery( '#' + wrapperID );
+				$wrapper.find( 'iframe' ).remove();
+
+				if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='22px' width='68px' frameBorder='0' scrolling='no' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				} else {
+					$wrapper.find( '.post-likes-widget-placeholder' ).after( "<iframe class='post-likes-widget jetpack-likes-widget' name='" + $wrapper.data( 'name' ) + "' height='55px' width='100%' frameBorder='0' src='" + $wrapper.data( 'src' ) + "'></iframe>" );
+				}
+
+				$wrapper.removeClass( 'jetpack-likes-widget-unloaded' ).addClass( 'jetpack-likes-widget-loading' );
+
+				$wrapper.find( 'iframe' ).load( function( e ) {
+					var $iframe = jQuery( e.target );
+					$wrapper.removeClass( 'jetpack-likes-widget-loading' ).addClass( 'jetpack-likes-widget-loaded' );
+
+					JetpackLikespostMessage( { event: 'loadLikeWidget', name: $iframe.attr( 'name' ), width: $iframe.width() }, window.frames[ 'likes-master' ] );
+
+					if ( $wrapper.hasClass( 'slim-likes-widget' ) ) {
+						$wrapper.find( 'iframe' ).Jetpack( 'resizeable' );
+					}
+				});
+				setTimeout( JetpackLikesWidgetQueueHandler, 250 );
+			}
+			JetpackLikesWidgetQueueHandler();
+		//]]>
+		</script>
+<script type='text/javascript' src='https://s0.wp.com/_static/??-eJzTLy/QTc7PK0nNK9EvyClNz8wr1i+uzCtJrMjITM/IAeKS1CJMEWP94uSizIISoOIM5/yiVL2sYh19yo1yKiotzgioLMnIzwOaaJ9ra2hsZmxsYGJiaJIFAFsOQPw='></script>
+<script type='text/javascript'>
+	(function(){
+		var corecss = document.createElement('link');
+		var themecss = document.createElement('link');
+		var corecssurl = "https://s0.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shCore.css?ver=3.0.83c";
+		if ( corecss.setAttribute ) {
+				corecss.setAttribute( "rel", "stylesheet" );
+				corecss.setAttribute( "type", "text/css" );
+				corecss.setAttribute( "href", corecssurl );
+		} else {
+				corecss.rel = "stylesheet";
+				corecss.href = corecssurl;
+		}
+		document.getElementsByTagName("head")[0].insertBefore( corecss, document.getElementById("syntaxhighlighteranchor") );
+		var themecssurl = "https://s0.wp.com/wp-content/plugins/syntaxhighlighter/syntaxhighlighter3/styles/shThemeDefault.css?m=1363304414g&amp;ver=3.0.83c";
+		if ( themecss.setAttribute ) {
+				themecss.setAttribute( "rel", "stylesheet" );
+				themecss.setAttribute( "type", "text/css" );
+				themecss.setAttribute( "href", themecssurl );
+		} else {
+				themecss.rel = "stylesheet";
+				themecss.href = themecssurl;
+		}
+		//document.getElementById("syntaxhighlighteranchor").appendChild(themecss);
+		document.getElementsByTagName("head")[0].insertBefore( themecss, document.getElementById("syntaxhighlighteranchor") );
+	})();
+	SyntaxHighlighter.config.strings.expandSource = '+ expand source';
+	SyntaxHighlighter.config.strings.help = '?';
+	SyntaxHighlighter.config.strings.alert = 'SyntaxHighlighter\n\n';
+	SyntaxHighlighter.config.strings.noBrush = 'Can\'t find brush for: ';
+	SyntaxHighlighter.config.strings.brushNotHtmlScript = 'Brush wasn\'t configured for html-script option: ';
+	SyntaxHighlighter.defaults['pad-line-numbers'] = false;
+	SyntaxHighlighter.defaults['toolbar'] = false;
+	SyntaxHighlighter.all();
+</script>
+<script type='text/javascript' src='https://s0.wp.com/wp-content/js/devicepx.js?m=1372783419g'></script>
+<script type="text/javascript">
+// <![CDATA[
+(function() {
+try{
+  if ( window.external &&'msIsSiteMode' in window.external) {
+    if (window.external.msIsSiteMode()) {
+      var jl = document.createElement('script');
+      jl.type='text/javascript';
+      jl.async=true;
+      jl.src='/wp-content/plugins/ie-sitemode/custom-jumplist.php';
+      var s = document.getElementsByTagName('script')[0];
+      s.parentNode.insertBefore(jl, s);
+    }
+  }
+}catch(e){}
+})();
+// ]]>
+</script><script src="https://ssl-stats.wordpress.com/w.js?21" type="text/javascript"></script>
+<script type="text/javascript">
+st_go({'blog':'3224297','v':'wpcom','tz':'-4','user_id':'0','post':'401','subd':'swiftcoder'});
+ex_go({'crypt':'UE40eW5QN0p8M2Y/RE1xSCVfV1JPZjFvWzR5Y0oyMThhb0oxZXZKM2lDQnBqVS1dU09ZckxkRmF2TXB5TkpOdTluSmxpRURYP3RreDM9N3clMjE4X2lUdGN1ak0rRFREMVpRWUl8fGwsSFRlOUE3eFhIV01aaUdUSndbV0YsMzVGdWpPa2ksfDQvWndoJS5dMD0xVUp5dG15c341SVtFUGMxa3hhakVpMyswZEIvWE5pUkVWdGIxc0g4ZHZdV2csP2FjVy1ycTRIbUloMHwuUEoyX01UTGJ5MEh+UFBmazQ5ZHVyXXdRPTEyNEguaXBSN0FpbXpKOElwcUJDQ0RuW2JFQThrRy1CTjdrVSU/LjFaWi9+bndIRE40VGl2bDdbP3FqaW9jXzRvVHlDNlpiT1Ri'});
+addLoadEvent(function(){linktracker_init('3224297',401);});
+	</script>
+<noscript><img src="https://stats.wordpress.com/b.gif?v=noscript" style="height:0px;width:0px;overflow:hidden" alt="" /></noscript>
+<script>
+if ( 'object' === typeof wpcom_mobile_user_agent_info ) {
+
+	wpcom_mobile_user_agent_info.init();
+	var mobileStatsQueryString = "";
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedPlatformName )
+		mobileStatsQueryString += "&x_" + 'mobile_platforms' + '=' + wpcom_mobile_user_agent_info.matchedPlatformName;
+	
+	if( false !== wpcom_mobile_user_agent_info.matchedUserAgentName )
+		mobileStatsQueryString += "&x_" + 'mobile_devices' + '=' + wpcom_mobile_user_agent_info.matchedUserAgentName;
+	
+	if( wpcom_mobile_user_agent_info.isIPad() )
+		mobileStatsQueryString += "&x_" + 'ipad_views' + '=' + 'views';
+
+	if( "" != mobileStatsQueryString ) {
+		new Image().src = document.location.protocol + '//stats.wordpress.com/g.gif?v=wpcom-no-pv' + mobileStatsQueryString + '&baba=' + Math.random();
+	}
+	
+}
+</script></body>
+</html>

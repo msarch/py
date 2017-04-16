@@ -1,0 +1,146 @@
+#!/usr/bin/python
+
+# This file is part of Shoebot.
+# Copyright (C) 2007-2009 the Shoebot authors
+# See the COPYING file for the full license text.
+#
+#   Redistribution and use in source and binary forms, with or without
+#   modification, are permitted provided that the following conditions are met:
+#
+#   Redistributions of source code must retain the above copyright notice, this
+#   list of conditions and the following disclaimer.
+#
+#   Redistributions in binary form must reproduce the above copyright notice,
+#   this list of conditions and the following disclaimer in the documentation
+#   and/or other materials provided with the distribution.
+#
+#   The name of the author may not be used to endorse or promote products
+#   derived from this software without specific prior written permission.
+#
+#   THIS SOFTWARE IS PROVIDED BY THE AUTHOR ``AS IS'' AND ANY EXPRESS OR IMPLIED
+#   WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF
+#   MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO
+#   EVENT SHALL THE AUTHOR BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+#   SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO,
+#   PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS;
+#   OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+#   WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR
+#   OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF
+#   ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+''' Shoebot console runner '''
+
+import sys, os
+import locale, gettext
+from optparse import OptionParser
+from shoebot import run
+
+DEFAULT_SCRIPT = '/usr/share/shoebot/examples/primitives.py'
+DEFAULT_WINDOW_SCRIPT = '/usr/share/shoebot/examples/socketcontrol2.py'
+DEFAULT_OUTPUTFILE = 'output.png'
+DEFAULT_SERVERPORT = 7777
+
+OUTPUT_EXTENSIONS = ('.png', '.svg', '.ps', '.pdf')
+APP = 'shoebot'
+DIR = sys.prefix + '/share/shoebot/locale'
+
+locale.setlocale(locale.LC_ALL, '')
+gettext.bindtextdomain(APP, DIR)
+#gettext.bindtextdomain(APP)
+gettext.textdomain(APP)
+_ = gettext.gettext
+
+NODEBOX = 'nodebox'
+DRAWBOT = 'drawbot'
+
+# use OptionParser to interpret commandline options
+parser = OptionParser(_("usage: %prog [options] inputfile.bot"))
+parser.add_option("-o",
+                "--outputfile",
+                dest="outputfile",
+                help=_("run script and output to FILE (accepts .svg, .ps, .pdf and .png extensions)"),
+                metavar="FILE")
+parser.add_option("-w",
+                "--window",
+                action="store_true",
+                dest="window",
+                default=False,
+                help=_("run script in a GTK window")
+                )
+parser.add_option("-f",
+                "--fullscreen",
+                action="store_true",
+                dest="fullscreen",
+                default=False,
+                help=_("run in fullscreen mode")
+                )
+parser.add_option("-s",
+                "--socketserver",
+                action="store_true",
+                dest="socketserver",
+                default=False,
+                help=_("run a socket server for external control (will run the script in windowed mode)"))
+parser.add_option("-a",
+                "--variables",
+                action="store_true",
+                dest="varwindow",
+                default=False,
+                help=_("show a variable tweaking window (will run the script in windowed mode)"))
+parser.add_option("-p",
+                "--serverport",
+                type="int",
+                dest="serverport",
+                default=DEFAULT_SERVERPORT,
+                help=_("set socketserver port to listen for connections (default is 7777)"))
+parser.add_option("-r",
+                "--repeat",
+                type="int",
+                dest="repeat",
+                default=False,
+                help=_("set number of iteration, multiple images will be produced"))
+parser.add_option("-b",
+                "--bot",
+                dest="bot",
+                default=NODEBOX,
+                help=_("Select between 'nodebox' (default) or 'drawbot' languages"),
+                )
+parser.add_option("-c",
+                "--close",
+                action="store_true",
+                dest="close",
+                default=False,
+                help=_("Close window after running bot (use with -r for benchmarking)"),
+                )
+
+def error(message):
+    '''Prints an error message, the help message and quits'''
+    global parser
+    print _("Error: ") + message
+    print
+    parser.print_help()
+    sys.exit()
+
+def warn(message):
+    '''Print a warning message'''
+    print _("Warning: ") + message
+
+if __name__ == '__main__':
+
+    # get optparse arguments and check for sanity
+    (options, args) = parser.parse_args()
+
+    if not args and not options.window:
+        error(_('Please specify an input script!\n (check /usr/share/shoebot/examples/ for example scripts)'))
+
+    if len(args) > 1:
+        error(_("Too many arguments!"))
+
+    
+    run(src = args[0],
+        grammar = options.bot,
+        outputfile = options.outputfile,
+        iterations = options.repeat or None,
+        window = options.window or options.varwindow or options.socketserver,
+        close_window = options.close,
+        server=options.socketserver,
+        port=options.serverport,
+        show_vars = options.varwindow)

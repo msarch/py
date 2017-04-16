@@ -1,0 +1,65 @@
+
+Circle1D: A lame 2D "Physics" Engine
+====================================
+
+This is not really a physics engine. But it's a nice little simulation that's
+simple enough to fit into 170 lines (without comments/blanks) and still provide
+some nice simulation effects that might be useful for some use cases.
+
+The point here is simplicity, not performance or realism. Collision detection is
+implemented in a very naive manner. All objects are circular. And so on... ;)
+
+
+The Basics
+----------
+
+The high-level overview of Circle1D goes like this:
+
+  - Vec2: A 2D vector helper class (x/y coordinates)
+  - Object: A circle of a given size and position
+  - Joint: A connection between two objects (circles)
+  - Scene: A scene contains Objects and Joints
+
+
+The Forces
+----------
+
+ 1. There's gravity (except for FIXED or NOGRAVITY objects) pulling objects down
+ 2. COLLIDER objects will apply repulsion to other COLLIDER objects on overlap
+ 3. Joints will apply forces to their connected objects to maintain the distance
+
+
+Examples
+--------
+
+See content.py for some example setups. These examples are loaded in main.py and
+can be modified or disabled.
+
+
+Performance
+-----------
+
+This one is interesting. On CPython 2.7.3, I get around 2.5 FPS. On PyPy 1.9.0,
+I get around 60 FPS once the critical code paths have been optimized by the JIT.
+These tests have been carried out on an Intel Core i5-2537M @ 1.40GHz using
+Ubuntu 12.10 (both CPython and PyPy from the repositories).
+
+
+Unit Tests
+----------
+
+There are some basic tests (use "nosetests" to run them) for the Vec2 class.
+
+
+Contributions
+-------------
+
+Very welcome. Send patches.
+
+
+Contact Info
+------------
+
+Author: Thomas Perl <thp.io/about>
+Website: http://thp.io/2013/circle1d/
+

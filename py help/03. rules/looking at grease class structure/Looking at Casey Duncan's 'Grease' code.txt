@@ -1,0 +1,110 @@
+
+# Looking at Casey Duncan's 'Grease' code
+*******************************************************************************
+
+
+Ref :
+----
+http://pythonhosted.org/grease/index.html
+
+
+Structure
+---------
+
+
+class Asteroid(grease.Entity):
+
+    def __init__(self, world, radius=45):
+        self.position.position = (
+            random.choice([-1, 1]) * random.randint(50, window.width / 2),
+            random.choice([-1, 1]) * random.randint(50, window.height / 2))
+        self.movement.velocity = (random.gauss(0, 700 / radius), random.gauss(0, 700 / radius))
+        self.movement.rotation = random.gauss(0, 15)
+        verts = [(random.gauss(x * radius, radius / 7), random.gauss(y * radius, radius / 7))
+            for x, y in self.UNIT_CIRCLE]
+        self.shape.verts = verts
+        self.renderable.color = "#aaa"
+
+
+class Shot(grease.Entity):
+    """Pew Pew!"""
+
+    SPEED = 300
+    TIME_TO_LIVE = 0.75 # seconds
+
+    def __init__(self, world, shooter, angle):
+        offset = geometry.Vec2d(0, shooter.collision.radius)
+        offset.rotate(angle)
+        self.position.position = shooter.position.position + offset
+        self.movement.velocity = (
+            offset.normalized() * self.SPEED + shooter.movement.velocity)
+        self.shape.verts = [(0, 1.5), (1.5, -1.5), (-1.5, -1.5)]
+        self.collision.radius = 2.0
+        self.collision.from_mask = ~shooter.collision.into_mask
+        self.renderable.color = "#ffc"
+        world.clock.schedule_once(self.expire, self.TIME_TO_LIVE)
+
+    def on_collide(self, other, point, normal):
+        self.delete()
+
+    def expire(self, dt):
+        self.delete()
+
+
+Time tracking
+-------------
+
+[docs]	def tick(self, dt):
+		"""Tick the mode's clock, but only if the world is currently running
+
+		:param dt: The time delta since the last tick
+		:type dt: float
+		"""
+		if self.running:
+			super(World, self).tick(dt)
+
+
+[docs]  	def step(self, dt):
+		"""Execute a time step for the world. Updates the world `time`
+		and invokes the world's systems.
+
+		Note that the specified time delta will be pinned to 10x the
+		configured step rate. For example if the step rate is 60,
+		then dt will be pinned at a maximum of 0.1666. This avoids
+		pathological behavior when the time between steps goes
+		much longer than expected.
+
+		:param dt: The time delta since the last time step
+		:type dt: float
+		"""
+		dt = min(dt, 10.0 / self.step_rate)
+		for component in self.components:
+			if hasattr(component, "step"):
+				component.step(dt)
+		for system in self.systems:
+			if hasattr(system, "step"):
+				system.step(dt)
+
+[docs]	def on_draw(self, gl=pyglet.gl):
+		"""Clear the current OpenGL context, reset the model/view matrix and
+		invoke the `draw()` methods of the renderers in order
+		"""
+		gl.glClear(gl.GL_COLOR_BUFFER_BIT | gl.GL_DEPTH_BUFFER_BIT)
+		gl.glLoadIdentity()
+		for renderer in self.renderers:
+			renderer.draw()
+Collision :
+-----------
+There are two major steps to collision handling in Grease:
+    collision detection and
+    collision response.
+
+The detection step happens within the collision system.
+
+A set of pairs of the currently colliding entities can be found in the collision_pairs attribute of the collision system. Applications are free to use collision_pairs directly, but they can also register one or more handlers for more automated collision response.
+
+Collision handlers are simply functions that accept the collision system they are configured for as an argument.
+
+The handler functions are called each time step to deal with collision response.
+
+---

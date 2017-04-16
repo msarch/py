@@ -1,0 +1,362 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://web.resource.org/cc/"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   sodipodi:version="0.32"
+   inkscape:version="0.45.1"
+   sodipodi:docbase="/home/joey/projects/pygamedev/mines"
+   sodipodi:docname="smile.svg"
+   inkscape:output_extension="org.inkscape.output.svg.inkscape"
+   inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+   inkscape:export-xdpi="30.76923"
+   inkscape:export-ydpi="30.76923">
+  <defs
+     id="defs4">
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient5242">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop5244" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0;"
+         offset="1"
+         id="stop5246" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient4199">
+      <stop
+         style="stop-color:#ffffd4;stop-opacity:1;"
+         offset="0"
+         id="stop4201" />
+      <stop
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="1"
+         id="stop4203" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       id="linearGradient2219">
+      <stop
+         style="stop-color:#cccccc;stop-opacity:1;"
+         offset="0"
+         id="stop2221" />
+      <stop
+         style="stop-color:#cccccc;stop-opacity:0;"
+         offset="1"
+         id="stop2223" />
+    </linearGradient>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient2219"
+       id="linearGradient2225"
+       x1="245"
+       y1="642.87671"
+       x2="283.13608"
+       y2="689.49829"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.0555011,0,0,1.1455764,-15.704937,-109.37134)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4199"
+       id="linearGradient4205"
+       x1="386.5"
+       y1="471.86218"
+       x2="488.5"
+       y2="565.86218"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4199"
+       id="linearGradient5226"
+       gradientUnits="userSpaceOnUse"
+       x1="386.5"
+       y1="471.86218"
+       x2="488.5"
+       y2="565.86218"
+       gradientTransform="translate(143,2)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4199"
+       id="linearGradient5238"
+       gradientUnits="userSpaceOnUse"
+       x1="386.5"
+       y1="471.86218"
+       x2="488.5"
+       y2="565.86218"
+       gradientTransform="translate(-2,-153)" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5242"
+       id="linearGradient5248"
+       x1="409.3226"
+       y1="367.86218"
+       x2="371"
+       y2="291.21704"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient5242"
+       id="linearGradient5252"
+       gradientUnits="userSpaceOnUse"
+       x1="409.3226"
+       y1="367.86218"
+       x2="371"
+       y2="291.21704" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#929292"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     gridtolerance="10000"
+     guidetolerance="10"
+     objecttolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="-37.561429"
+     inkscape:cy="913"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:window-width="1014"
+     inkscape:window-height="716"
+     inkscape:window-x="0"
+     inkscape:window-y="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path2160"
+       sodipodi:cx="413"
+       sodipodi:cy="529.36218"
+       sodipodi:rx="57"
+       sodipodi:ry="57"
+       d="M 470 529.36218 A 57 57 0 1 1  356,529.36218 A 57 57 0 1 1  470 529.36218 z"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path2190"
+       sodipodi:cx="278"
+       sodipodi:cy="691.36218"
+       sodipodi:rx="54"
+       sodipodi:ry="54"
+       d="M 332 691.36218 A 54 54 0 1 1  224,691.36218 A 54 54 0 1 1  332 691.36218 z"
+       transform="matrix(0.9993554,0,0,1.0846393,0.1786608,-66.52614)"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       id="path2194"
+       d="M 294.54854,667.06066 L 371.88707,667.25836 L 302.57143,689.19767 L 294.54854,667.06066 z "
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.12337351;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:transform-center-x="-56.217688"
+       inkscape:transform-center-y="-6.3079381"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       inkscape:transform-center-y="40.322247"
+       inkscape:transform-center-x="-38.995586"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.12337351;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 306.14944,698.87799 L 350.03379,767.99494 L 293.94988,718.64043 L 306.14944,698.87799 z "
+       id="path2196"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       inkscape:transform-center-y="61.998147"
+       inkscape:transform-center-x="8.9881567"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.12337351;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 284.22854,708.99605 L 251.79538,785.19713 L 262.34487,707.67337 L 284.22854,708.99605 z "
+       id="path2200"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.12337351;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 259.79954,702.21853 L 182.47493,703.82335 L 251.34051,680.27361 L 259.79954,702.21853 z "
+       id="path2204"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       inkscape:transform-center-y="-42.849349"
+       inkscape:transform-center-x="36.499795"
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.12337351;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 251.16143,668.67791 L 210.69948,597.14337 L 264.30503,649.64187 L 251.16143,668.67791 z "
+       id="path2208"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       id="path2212"
+       d="M 276.04571,658.67633 L 325.97267,594.57166 L 296.8184,666.26403 L 276.04571,658.67633 z "
+       style="opacity:1;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3.12337351;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       inkscape:transform-center-x="-24.009073"
+       inkscape:transform-center-y="-54.019258"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       style="opacity:1;fill:url(#linearGradient2225);fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2.88277912;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 277.72438,628.59468 C 250.23023,628.59468 227.91791,652.81111 227.91791,682.65156 C 227.91791,694.77426 231.59663,705.95817 237.81324,714.9783 C 240.2084,679.00413 268.73726,650.57542 303.58415,650.57542 C 308.92152,650.57542 314.1157,651.24956 319.08683,652.50859 C 310.14163,638.06847 294.9505,628.59465 277.72438,628.59468 z "
+       id="path2214"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/mine.png"
+       inkscape:export-xdpi="9.3489246"
+       inkscape:export-ydpi="9.3489246" />
+    <path
+       style="opacity:1;fill:url(#linearGradient4205);fill-opacity:1.0;fill-rule:nonzero;stroke:none;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 413 477.34375 C 384.28082 477.34375 360.96874 500.65579 360.96875 529.375 C 360.96875 557.46813 383.27094 580.35804 411.125 581.34375 C 398.94544 573.30373 390.90625 559.48823 390.90625 543.8125 C 390.90626 519.01058 411.04183 498.875 435.84375 498.875 C 444.38497 498.875 452.3859 501.29431 459.1875 505.4375 C 450.52025 488.75037 433.09148 477.34375 413 477.34375 z "
+       id="path2255"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 373.27276,556.37478 C 373.27276,556.37478 394.09543,578.73069 413.06362,578.73069 C 432.03181,578.73069 451.60472,555.65667 451.60472,555.65667"
+       id="path2233"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path2251"
+       d="M 421.70037,502.87468 C 423.41972,502.11824 425.26663,501.83102 427.09789,501.50326 C 430.27178,501.12837 433.23647,501.91618 436.14977,503.10201 C 439.49661,504.59217 442.19756,507.00373 444.61338,509.70186 C 446.78323,512.14346 448.15429,515.04885 449.41291,518.01858 C 449.51754,518.44484 449.62217,518.87111 449.7268,519.29737 C 449.93159,520.13171 448.85586,520.62931 448.34881,519.9358 L 448.34881,519.9358 C 448.09532,519.5891 447.84183,519.2424 447.58835,518.8957 C 446.10277,516.30002 444.7117,513.62262 442.80559,511.3013 C 440.65954,508.84364 438.2523,506.6363 435.2545,505.25554 C 432.7324,504.18225 430.15509,503.40714 427.38009,503.64407 C 425.69319,503.89354 424.01141,504.141 422.40713,504.75937 C 421.34468,505.1689 420.65814,503.33322 421.70037,502.87468 z "
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       d="M 402.23538,503.87468 C 400.51603,503.11824 398.66912,502.83102 396.83786,502.50326 C 393.66397,502.12837 390.69928,502.91618 387.78598,504.10201 C 384.43914,505.59217 381.73819,508.00373 379.32237,510.70186 C 377.15252,513.14346 375.78146,516.04885 374.52284,519.01858 C 374.41821,519.44484 374.31358,519.87111 374.20895,520.29737 C 374.00416,521.13171 375.07989,521.62931 375.58694,520.9358 L 375.58694,520.9358 C 375.84043,520.5891 376.09392,520.2424 376.3474,519.8957 C 377.83298,517.30002 379.22405,514.62262 381.13016,512.3013 C 383.27621,509.84364 385.68345,507.6363 388.68125,506.25554 C 391.20335,505.18225 393.78066,504.40714 396.55566,504.64407 C 398.24256,504.89354 399.92434,505.141 401.52862,505.75937 C 402.59107,506.1689 403.27761,504.33322 402.23538,503.87468 z "
+       id="path2253"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5216"
+       sodipodi:cx="413"
+       sodipodi:cy="529.36218"
+       sodipodi:rx="57"
+       sodipodi:ry="57"
+       d="M 470 529.36218 A 57 57 0 1 1  356,529.36218 A 57 57 0 1 1  470 529.36218 z"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923"
+       transform="translate(143,2)" />
+    <path
+       style="opacity:1;fill:url(#linearGradient5226);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 556,479.34375 C 527.28082,479.34375 503.96874,502.65579 503.96875,531.375 C 503.96875,559.46813 526.27094,582.35804 554.125,583.34375 C 541.94544,575.30373 533.90625,561.48823 533.90625,545.8125 C 533.90626,521.01058 554.04183,500.875 578.84375,500.875 C 587.38497,500.875 595.3859,503.29431 602.1875,507.4375 C 593.52025,490.75037 576.09148,479.34375 556,479.34375 z "
+       id="path5218"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 516.27276,566.01258 C 516.27276,566.01258 537.09543,543.65667 556.06362,543.65667 C 575.03181,543.65667 594.60472,566.73069 594.60472,566.73069"
+       id="path5220"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path5176"
+       d="M 583.50748,507.65461 C 581.07287,509.31127 578.81665,511.21187 576.52929,513.06184 C 573.16529,515.85914 569.86129,518.72758 566.54641,521.58265 C 564.60559,523.14841 562.83731,524.90246 561.03318,526.61586 C 560.85305,527.56722 560.30379,526.65713 560.133,526.66679 C 559.43009,526.70656 558.84986,527.66627 558.92499,526.96625 L 558.92499,526.96625 C 558.98119,526.44266 558.04734,525.31275 559.15327,524.83946 C 561.04419,523.08842 562.88185,521.26701 564.94047,519.69703 C 568.29465,516.86305 571.6201,513.99483 575.01329,511.20734 C 577.37366,509.28717 579.69756,507.30905 582.20957,505.5865 C 583.34869,504.80538 584.64939,506.87758 583.50748,507.65461 z "
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path5178"
+       d="M 566.34185,508.30656 C 567.68033,509.75612 568.87101,511.32949 570.10425,512.86623 C 571.99706,515.7351 574.35904,518.1345 576.87763,520.4328 C 579.1321,522.00997 581.39928,523.577 583.60424,525.19902 C 583.73091,525.54642 583.85758,525.89383 583.98426,526.24123 C 584.03144,526.37062 584.00674,526.42395 583.87328,526.45792 L 583.87328,526.45792 C 583.50476,526.55171 583.13624,526.64549 582.76772,526.73928 C 580.08236,525.59214 577.40148,524.45724 575.18472,522.41912 C 572.54664,519.98794 570.05613,517.46563 568.04793,514.46136 C 566.86907,512.98056 565.72155,511.47332 564.455,510.06444 C 563.47973,508.97956 565.35221,507.23478 566.34185,508.30656 z "
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path5192"
+       d="M 547.95792,505.54187 C 545.53658,506.37029 543.38073,507.77982 541.19492,509.07811 C 537.50805,511.33812 534.04216,513.92099 530.58961,516.51627 C 528.55916,518.1411 526.49562,519.71827 524.40766,521.26622 C 523.9337,522.08199 522.93621,521.65465 522.3408,521.81183 C 522.30798,521.82049 522.28494,521.80103 522.29805,521.76972 L 522.29805,521.76972 C 522.5297,521.21683 522.16409,520.04674 523.15181,519.73196 C 525.12264,517.99492 527.11134,516.28255 529.2564,514.75525 C 532.78402,512.13808 536.31286,509.51436 540.04949,507.19762 C 542.41749,505.80848 544.75708,504.30688 547.39506,503.47212 C 548.55187,503.10606 549.10594,505.14909 547.95792,505.54187 z "
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path5194"
+       d="M 529.08668,505.43053 C 530.92997,506.52608 532.04337,508.32963 533.35697,509.94581 C 535.09084,512.73403 536.62309,515.64083 538.25476,518.48915 C 539.51335,520.62179 540.96295,522.63087 542.38584,524.65464 C 542.94908,525.04901 542.86282,525.79344 543.07853,526.30844 C 543.45963,527.21832 542.38273,527.95946 541.64624,527.30319 L 541.64624,527.30319 C 541.23536,526.93707 540.50948,526.7747 540.32145,526.12272 C 538.87014,524.02753 537.39892,521.94365 536.12779,519.72992 C 534.54385,516.93213 533.05509,514.07757 531.36392,511.34306 C 530.25992,509.91313 529.29149,508.36297 527.83279,507.24406 C 526.84318,506.48496 528.01453,504.7933 529.08668,505.43053 z "
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_dead.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       sodipodi:type="arc"
+       style="opacity:1;fill:#ffff00;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="path5228"
+       sodipodi:cx="413"
+       sodipodi:cy="529.36218"
+       sodipodi:rx="57"
+       sodipodi:ry="57"
+       d="M 470 529.36218 A 57 57 0 1 1  356,529.36218 A 57 57 0 1 1  470 529.36218 z"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_won.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923"
+       transform="translate(-2,-153)" />
+    <path
+       style="opacity:1;fill:url(#linearGradient5238);fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 411,324.34375 C 382.28082,324.34375 358.96874,347.65579 358.96875,376.375 C 358.96875,404.46813 381.27094,427.35804 409.125,428.34375 C 396.94544,420.30373 388.90625,406.48823 388.90625,390.8125 C 388.90626,366.01058 409.04183,345.875 433.84375,345.875 C 442.38497,345.875 450.3859,348.29431 457.1875,352.4375 C 448.52025,335.75037 431.09148,324.34375 411,324.34375 z "
+       id="path5230"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_won.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:3;stroke-linecap:square;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 371.27276,403.37478 C 371.27276,403.37478 392.09543,425.73069 411.06362,425.73069 C 430.03181,425.73069 449.60472,402.65667 449.60472,402.65667 L 450,401.36218 C 450,401.36218 428,408.36218 412,409.36218 C 396,410.36218 371.27276,403.37478 371.27276,403.37478 z "
+       id="path5232"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_won.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       id="path5234"
+       d="M 419.70037,349.87468 C 421.41972,349.11824 423.26663,348.83102 425.09789,348.50326 C 428.27178,348.12837 431.23647,348.91618 434.14977,350.10201 C 437.49661,351.59217 440.19756,354.00373 442.61338,356.70186 C 444.78323,359.14346 446.15429,362.04885 447.41291,365.01858 C 447.51754,365.44484 447.62217,365.87111 447.7268,366.29737 C 447.93159,367.13171 446.85586,367.62931 446.34881,366.9358 L 446.34881,366.9358 C 446.09532,366.5891 445.84183,366.2424 445.58835,365.8957 C 444.10277,363.30002 442.7117,360.62262 440.80559,358.3013 C 438.65954,355.84364 436.2523,353.6363 433.2545,352.25554 C 430.7324,351.18225 428.15509,350.40714 425.38009,350.64407 C 423.69319,350.89354 422.01141,351.141 420.40713,351.75937 C 419.34468,352.1689 418.65814,350.33322 419.70037,349.87468 z "
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_won.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+    <path
+       d="M 400.23538,350.87468 C 398.51603,350.11824 396.66912,349.83102 394.83786,349.50326 C 391.66397,349.12837 388.69928,349.91618 385.78598,351.10201 C 382.43914,352.59217 379.73819,355.00373 377.32237,357.70186 C 375.15252,360.14346 373.78146,363.04885 372.52284,366.01858 C 372.41821,366.44484 372.31358,366.87111 372.20895,367.29737 C 372.00416,368.13171 373.07989,368.62931 373.58694,367.9358 L 373.58694,367.9358 C 373.84043,367.5891 374.09392,367.2424 374.3474,366.8957 C 375.83298,364.30002 377.22405,361.62262 379.13016,359.3013 C 381.27621,356.84364 383.68345,354.6363 386.68125,353.25554 C 389.20335,352.18225 391.78066,351.40714 394.55566,351.64407 C 396.24256,351.89354 397.92434,352.141 399.52862,352.75937 C 400.59107,353.1689 401.27761,351.33322 400.23538,350.87468 z "
+       id="path5236"
+       style="fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       inkscape:export-filename="/home/joey/projects/pygamedev/mines/smile_won.png"
+       inkscape:export-xdpi="30.76923"
+       inkscape:export-ydpi="30.76923" />
+  </g>
+</svg>

@@ -1,0 +1,23 @@
+<ns0:svg height="1052.3622047" id="svg9722" width="744.09448819" ns1:docname="volumetric_flask_2.svg" ns1:version="0.32" ns2:output_extension="org.inkscape.output.svg.inkscape" ns2:version="0.46" xmlns:ns0="http://www.w3.org/2000/svg" xmlns:ns1="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd" xmlns:ns2="http://www.inkscape.org/namespaces/inkscape">
+  <ns0:defs id="defs9724">
+    <ns2:perspective id="perspective9730" ns1:type="inkscape:persp3d" ns2:persp3d-origin="372.04724 : 350.78739 : 1" ns2:vp_x="0 : 526.18109 : 1" ns2:vp_y="0 : 1000 : 0" ns2:vp_z="744.09448 : 526.18109 : 1" />
+  </ns0:defs>
+  <ns1:namedview bordercolor="#666666" borderopacity="1.0" gridtolerance="10000" guidetolerance="10" id="base" objecttolerance="10" pagecolor="#ffffff" showgrid="false" ns2:current-layer="layer1" ns2:cx="375" ns2:cy="520" ns2:document-units="px" ns2:pageopacity="0.0" ns2:pageshadow="2" ns2:window-height="723" ns2:window-width="645" ns2:window-x="5" ns2:window-y="73" ns2:zoom="0.35" />
+  <ns0:metadata id="metadata9727">
+    <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+      <ns4:Work rdf:about="" xmlns:ns4="http://creativecommons.org/ns#">
+        <ns5:format xmlns:ns5="http://purl.org/dc/elements/1.1/">image/svg+xml</ns5:format>
+        <ns5:type rdf:resource="http://purl.org/dc/dcmitype/StillImage" xmlns:ns5="http://purl.org/dc/elements/1.1/" />
+      </ns4:Work>
+    </rdf:RDF>
+  </ns0:metadata>
+  <ns0:g id="layer1" ns2:groupmode="layer" ns2:label="Layer 1">
+    <ns0:g id="g4900" transform="matrix(0.7373545,0,0,0.7373545,-4069.4846,598.50657)">
+      <ns0:path d="M 5969.3438,-778.125 L 5965.5,87.1875 C 5965.5,87.1875 5756.7302,344.88844 5698.5312,417.59375 C 5640.5159,490.06943 5643.1508,613.87501 5810.4375,613.875 L 6018.0312,613.875 L 6019.75,613.875 L 6227.3438,613.875 C 6394.6302,613.87501 6397.2653,490.06943 6339.25,417.59375 C 6281.0508,344.88844 6072.2812,87.1875 6072.2812,87.1875 L 6068.4375,-778.125 L 6019.9062,-778.125 L 6017.875,-778.125 L 5969.3438,-778.125 z" id="path4870" style="fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.0685997;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" />
+      <ns0:path d="M 5967.0157,-424.48083 L 6019.5436,-424.48083" id="path4872" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.0685997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" ns1:nodetypes="cc" />
+      <ns0:rect height="22.683546" id="rect4874" rx="6.7809987" ry="6.7809987" style="opacity:1;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:4.0685997;stroke-linecap:butt;stroke-linejoin:miter;marker:none;marker-start:none;marker-mid:none;marker-end:none;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;visibility:visible;display:inline;overflow:visible;enable-background:accumulate" width="142.21135" x="5947.3477" y="-801.03473" />
+      <ns0:path d="M 6071.7152,-424.48083 L 6019.1873,-424.48083" id="path4878" style="fill:none;fill-rule:evenodd;stroke:#000000;stroke-width:4.0685997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" ns1:nodetypes="cc" />
+    </ns0:g>
+    <ns0:text id="text2970" style="font-size:18px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;font-family:Serif;-inkscape-font-specification:Serif" x="338.63843" y="190.59375" xml:space="preserve"><ns0:tspan id="tspan2972" x="338.63843" y="190.59375" ns1:role="line">200mL</ns0:tspan></ns0:text>
+  </ns0:g>
+</ns0:svg>

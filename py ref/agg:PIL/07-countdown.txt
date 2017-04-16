@@ -1,0 +1,18 @@
+Creating a Countdown Timer Video
+
+
+Using the python script below you can create one yourself, in any color and duration. You will need some free software packages to run the script and make a video of the generated frames.
+
+Software requirements :
+
+You must have the same version number (eg. 2.6) of these programmes installed:
+- Python
+- PIL (Python Imaging Library)
+- Aggdraw
+
+To create a video out of the images, you could use VirtualDub to open the first frame, then set the framerate, choose compression (Xvid for example), save as avi. I made some sound beeps using Audacity. This is all free to download.
+
+Finally you will need a TrueType font in the same folder as the .py script file. The name of the .ttf font should match the one in the script. I used the free Liberation font. Its monospaced.
+
+Creating the images
+Save the script below as a .py file. Edit it to your wish (like bgcolor and countdown time) and set the correct font name (now it is LiberationSans-Bold.ttf). Doubleclick the .py file and many frames are saved in a subfolder. This could take a while for high resolutions. Somehow it is quite slow at saving.
